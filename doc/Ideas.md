@@ -11,4 +11,9 @@ werden.
 
 ## 120cm Slider und Schrittmotor
 Der Schrittmotor braucht für meinen 120cm Slider genau 12970 Schritte. In der langsamsten Steuerungseinstellung
-benötigt er dafür 3,8 Minuten.
+benötigt er dafür 3,8 Minuten. In dem Script [slider.py](https://github.com/tbrumm/SliderTimelapse/blob/master/Code%20Schnipsel/slider.py) sind folgende Einstellungen anzupassen:
+
+```python
+# Zeit fuer Pause zwischen den Vorgaengen
+time = 0.005
+```
