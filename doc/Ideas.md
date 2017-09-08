@@ -64,3 +64,4 @@ for i in range (12970):
 ### Software
 
 * [gphote2 Timelapse](https://github.com/jflalonde/gphoto2-timelapse)
+* [RPI Timelapse Controller](http://blog.davidsingleton.org/raspberry-pi-timelapse-controller/)
