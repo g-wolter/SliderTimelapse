@@ -17,3 +17,17 @@ benötigt er dafür 3,8 Minuten. In dem Script [slider.py](https://github.com/tb
 # Zeit fuer Pause zwischen den Vorgaengen
 time = 0.005
 ```
+
+```python
+# Volle Umdrehung    
+for i in range (512):    
+    Step1()
+    Step2()
+    Step3()
+    Step4()
+    Step5()
+    Step6()
+    Step7()
+    Step8()  
+    print i
+```
