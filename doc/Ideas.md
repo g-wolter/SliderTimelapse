@@ -29,7 +29,7 @@ Mit dieser FOR Schleife werden die einzelnen Spulen des Schrittmotors angesproch
 #### Vorwärts
 
 ```python
-# Volle Umdrehung    
+# Volle Umdrehung sind 512 Schritte  
 for i in range (12970):    
     Step1()
     Step2()
@@ -44,7 +44,7 @@ for i in range (12970):
 #### Rückwärts
 
 ```python
-# Volle Umdrehung    
+# Volle Umdrehung sind 512 Schritte 
 for i in range (12970):    
     Step8() 
     Step7()
