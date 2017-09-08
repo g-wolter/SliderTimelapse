@@ -58,3 +58,9 @@ for i in range (12970):
     Step1()
     print i
 ```
+
+## Gphoto und Timelapse
+
+### Software
+
+* [gphote2 Timelapse](https://github.com/jflalonde/gphoto2-timelapse)
