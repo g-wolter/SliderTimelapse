@@ -13,6 +13,8 @@ werden.
 Der Schrittmotor braucht für meinen 120cm Slider genau 12970 Schritte. In der schnellsten Steuerungseinstellung
 benötigt er dafür 3,8 Minuten. In dem Script [slider.py](https://github.com/tbrumm/SliderTimelapse/blob/master/Code%20Schnipsel/slider.py) sind folgende Einstellungen anzupassen:
 
+* [Detailierte Erklärung zum Schrittmotor](http://www.elektronx.de/tutorials/schrittmotorsteuerung-mit-dem-raspberry-pi/)
+
 ### Geschwindigkeit
 
 Der schnellst mögliche Wert scheint 0.005 sec zu sein. Je größer der Wert, desto langsamer der Slider.
