@@ -65,3 +65,5 @@ for i in range (12970):
 
 * [gphoto2 Timelapse](https://github.com/jflalonde/gphoto2-timelapse)
 * [RPI Timelapse Controller](http://blog.davidsingleton.org/raspberry-pi-timelapse-controller/)
+* [LRTimelapse Pro Free Timer - GWegner](https://github.com/gwegner/LRTimelapse-Pro-Timer-Free)
+* [Timelapse Deflicker](https://github.com/cyberang3l/timelapse-deflicker)
