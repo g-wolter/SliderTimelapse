@@ -2,4 +2,4 @@
 Just a repo to collect my Slider Control and Timelapse Scrips
 
 Inhalt:
-- Parts.md
+- [Teileliste](https://github.com/tbrumm/SliderTimelapse/blob/master/Parts.md)
