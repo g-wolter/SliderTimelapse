@@ -106,6 +106,9 @@ DHCPDv4_PID=/var/run/dhcpd.pid
 INTERFACESv4="wlx74da38024e1a"
 #INTERFACESv6=""
 ```
+
+```bash
 ifconfig wlan0 10.11.12.1 netmask 255.255.255.0
 /etc/init.d/isc-dhcp-server restart
+```
 
