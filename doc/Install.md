@@ -23,9 +23,9 @@ chmod +x /usr/sbin/hostapd
 ### hostapd.conf vorbereiten
 Erst mittels ifconfig das WLAN Interface rausfinden, dass Ihr verwenden wollt. Ich habe 2 im Einsatz, einen am Heimnetz, einen für die Verbindung mit dem Tablet/Phone.
 
-```bash
-vi /etc/hostapd/hostapd.conf
-```
+
+#### /etc/hostapd/hostapd.conf
+
 
 ```bash
 interface=wlx74da38024e1a
@@ -42,7 +42,7 @@ wpa_pairwise=TKIP
 rsn_pairwise=CCMP
 ```
 
-vi /etc/default/hostapd
+#### /etc/default/hostapd
 ```bash
 # Defaults for hostapd initscript
 #
@@ -67,7 +67,7 @@ DAEMON_CONF="/etc/hostapd/hostapd.conf"
 #DAEMON_OPTS=""
 ```
 
-vi /etc/network/interfaces
+#### /etc/network/interfaces
 ```bash
 # interfaces(5) file used by ifup(8) and ifdown(8)
 
@@ -83,9 +83,12 @@ iface wlx74da38024e1a inet static
     netmask 255.255.255.0
 ```
 
+#### DHCP Server installieren
+```bash
 apt-get install isc-dhcp-server
+```
 
-vi /etc/default/isc-dhcp-server
+#### /etc/default/isc-dhcp-server
 ```bash
 # Defaults for isc-dhcp-server (sourced by /etc/init.d/isc-dhcp-server)
 
