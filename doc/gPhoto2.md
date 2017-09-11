@@ -2,6 +2,7 @@
 
 gphoto2 --auto-detect
 
+```
 root@camcontrol:~# gphoto2 -a
 
 Fähigkeiten für Kamera           : Nikon DSC D7000 (PTP mode)
@@ -16,7 +17,9 @@ Unterstützung für das Löschen einzelner Bilder: Ja
 Unterstützung für das Löschen aller Bilder   : Nein
 Unterstützung für Bildvorschau   : Ja
 Unterstützung für Bildhochladen  : Ja
+```
 
+```
 root@camcontrol:~# gphoto2 -a
 Fähigkeiten für Kamera           : Canon EOS 550D
 Unterstützung für seriellen Port : Nein
@@ -30,8 +33,9 @@ Unterstützung für das Löschen einzelner Bilder: Ja
 Unterstützung für das Löschen aller Bilder   : Nein
 Unterstützung für Bildvorschau   : Ja
 Unterstützung für Bildhochladen  : Ja
+```
 
-
+```
 --capture-image
 Capture an image and	keep it	on the camera.
 
@@ -77,6 +81,7 @@ For lists of	choices	the value is looked up and set.
 
 Look	at the output of --get-config to see what indices are possible
 to set here.
+```
 
 ## Settings die sowohl Nikon als auch Canon unterstützen
 ```
