@@ -20,6 +20,8 @@ mv /usr/sbin/hostapd /usr/sbin/hostapd_original
 mv hostapd /usr/sbin/hostapd
 chmod +x /usr/sbin/hostapd
 ```
+### hostapd.conf vorbereiten
+Erst mittels ifconfig das WLAN Interface rausfinden, dass Ihr verwenden wollt. Ich habe 2 im Einsatz, einen am Heimnetz, einen für die Verbindung mit dem Tablet/Phone.
 
 ```bash
 vi /etc/hostapd/hostapd.conf
