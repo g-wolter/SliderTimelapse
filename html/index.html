@@ -4,8 +4,84 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slider Timelapse Control</title>
+    <style type="text/css">
+ * {
+   font-family: Arial, Helvetica, sans-serif;
+ }
+ #box {
+  margin: 10px;
+  padding: 20px;
+  font-size: 14px;
+  color: #00A;
+  width: 200px;
+  height: 200px;
+  display: block;
+  border: 1px solid #888;
+  -moz-border-radius: 10px;
+  -khtml-border-radius: 30px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+</style>
   </head>
   <body>
-    <p>Hier geht es dann los</p>
+<h1>Camera Settings</h1>
+<div id="box">
+<form action="select.html">
+  <h2>Werte müssen dynamisch aus gPhoto später ausgelesen werden</h2>
+  <label>ISO:
+    <select name="ISO">
+      <option>100</option>
+      <option>200</option>
+      <option>400</option>
+      <option>800</option>
+      <option>1600</option>
+      <option>3200</option>
+    </select>
+  </label>
+<br>
+  <label>Zeit:
+    <select name="Zeit">
+      <option>30 sec</option>
+      <option>25 sec</option>
+      <option>20 sec</option>
+      <option>15 sec</option>
+      <option>13 sec</option>
+      <option>10 sec</option>
+      <option>8 sec</option>
+      <option>6 sec</option>
+      <option>5 sec</option>
+      <option>4 sec</option>
+      <option>3 sec</option>
+      <option>2 sec</option>
+      <option>1,6 sec</option>
+      <option>1,3 sec</option>
+      <option>1,0 sec</option>
+      <option>u.s.w. sec</option>
+    </select>
+  </label>
+<br>
+  <label>
+    <input type="checkbox" name="BlackPic" value="black">
+          Schwarzbild
+  </label>
+<br>
+  <label>Blende:
+    <select name="Blende">
+      <option>1,4</option>
+      <option>1,8</option>
+      <option>2,0</option>
+      <option>2,8</option>
+      <option>3,5</option>
+      <option>4,0</option>
+      <option>5,6</option>
+      <option>8,0</option>
+      <option>11</option>
+      <option>16</option>
+    </select>
+  </label>
+
+</form>
+</div>
   </body>
 </html>
