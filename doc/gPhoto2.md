@@ -114,12 +114,12 @@ to set here.
 ### Nikon
 
 ```
-Option: /main/actions/autofocusdrive
+OPTION: /main/actions/autofocusdrive
 Label: Fahre NIKON DSLR Autofokus
 Type: TOGGLE
 Current: 0
 
-Option: /main/actions/manualfocusdrive
+OPTION: /main/actions/manualfocusdrive
 Label: Fahre NIKON DSLR manuellen Fokus
 Type: RANGE
 Current: 0
@@ -127,53 +127,17 @@ Bottom: -32767
 Top: 32767
 Step: 1
 
-Option: /main/actions/opcode
+OPTION: /main/actions/opcode
 Label: PTP Opcode
 Type: TEXT
 Current: 0x1001,0xparam1,0xparam2
 
-Option: /main/actions/viewfinder
+OPTION: /main/actions/viewfinder
 Label: Nikon Viewfinder
 Type: TOGGLE
 Current: 0
 
-Option: /main/capturesettings/exposurecompensation
-Label: Belichtungskorrektur
-Type: RADIO
-Current: 0
-Choice: 0 -5
-Choice: 1 -4,666
-Choice: 2 -4,333
-Choice: 3 -4
-Choice: 4 -3,666
-Choice: 5 -3,333
-Choice: 6 -3
-Choice: 7 -2,666
-Choice: 8 -2,333
-Choice: 9 -2
-Choice: 10 -1,666
-Choice: 11 -1,333
-Choice: 12 -1
-Choice: 13 -0,666
-Choice: 14 -0,333
-Choice: 15 0
-Choice: 16 0,333
-Choice: 17 0,666
-Choice: 18 1
-Choice: 19 1,333
-Choice: 20 1,666
-Choice: 21 2
-Choice: 22 2,333
-Choice: 23 2,666
-Choice: 24 3
-Choice: 25 3,333
-Choice: 26 3,666
-Choice: 27 4
-Choice: 28 4,333
-Choice: 29 4,666
-Choice: 30 5
-
-Option: /main/capturesettings/focusmode
+OPTION: /main/capturesettings/focusmode
 Label: Fokusmodus
 Type: RADIO
 Current: AF-C
@@ -183,10 +147,10 @@ Choice: 2 AF-C
 Choice: 3 AF-A
 Choice: 4 Unbekannter Wert 8013
 
-Option: /main/capturesettings/shutterspeed
+OPTION: /main/capturesettings/shutterspeed
 Label: Belichtungszeit
 Type: RADIO
-Current: 0,7692s
+Current: 0,0062s
 Choice: 0 0,0001s
 Choice: 1 0,0002s
 Choice: 2 0,0003s
@@ -225,15 +189,31 @@ Choice: 34 0,5000s
 Choice: 35 0,6250s
 Choice: 36 0,7692s
 Choice: 37 1,0000s
+Choice: 38 1,3000s
+Choice: 39 1,6000s
+Choice: 40 2,0000s
+Choice: 41 2,5000s
+Choice: 42 3,0000s
+Choice: 43 4,0000s
+Choice: 44 5,0000s
+Choice: 45 6,0000s
+Choice: 46 8,0000s
+Choice: 47 10,0000s
+Choice: 48 13,0000s
+Choice: 49 15,0000s
+Choice: 50 20,0000s
+Choice: 51 25,0000s
+Choice: 52 30,0000s
+Choice: 53 Langzeitbelichtung
 
-Option: /main/imgsettings/colorspace
+OPTION: /main/imgsettings/colorspace
 Label: Farbraum
 Type: RADIO
 Current: sRGB
 Choice: 0 sRGB
 Choice: 1 AdobeRGB
 
-Option: /main/imgsettings/iso
+OPTION: /main/imgsettings/iso
 Label: ISO-Empfindlichkeit
 Type: RADIO
 Current: 200
@@ -261,7 +241,7 @@ Choice: 20 10000
 Choice: 21 12800
 Choice: 22 25600
 
-Option: /main/imgsettings/whitebalance
+OPTION: /main/imgsettings/whitebalance
 Label: Weißabgleich
 Type: RADIO
 Current: Automatisch
@@ -275,10 +255,10 @@ Choice: 6 Schatten
 Choice: 7 Farbtemperatur
 Choice: 8 Voreinstellung
 
-Option: /main/other/5001
+OPTION: /main/other/5001
 Label: Batterie Ladezustand
 Type: MENU
-Current: 60
+Current: 40
 Choice: 0 0
 Choice: 1 1
 Choice: 2 2
@@ -381,85 +361,86 @@ Choice: 98 98
 Choice: 99 99
 Choice: 100 100
 
-Option: /main/other/d303
+OPTION: /main/other/d303
 Label: PTP Property 0xd303
 Type: TEXT
 Current: 1
 
-Option: /main/other/d406
+OPTION: /main/other/d406
 Label: PTP Property 0xd406
 Type: TEXT
 Current: Windows/6.0.5330.0 MTPClassDriver/6.0.5330.0
 
-Option: /main/other/d407
+OPTION: /main/other/d407
 Label: PTP Property 0xd407
 Type: TEXT
 Current: 1
 
-Option: /main/settings/artist
+OPTION: /main/settings/artist
 Label: Künstler
 Type: TEXT
 Current: PicturePunxx
 
-Option: /main/settings/capturetarget
+OPTION: /main/settings/capturetarget
 Label: Aufnahmeziel
 Type: RADIO
 Current: interner Speicher
 Choice: 0 interner Speicher
 Choice: 1 Speicherkarte
 
-Option: /main/settings/copyright
+OPTION: /main/settings/copyright
 Label: Copyright
 Type: TEXT
 Current: PicturePunxx
 
-Option: /main/settings/datetime
+OPTION: /main/settings/datetime
 Label: Kamera Datum und Zeit
 Type: DATE
-Current: 1505149395
-Printable: Mo 11 Sep 2017 19:03:15 CEST
+Current: 1505153703
+Printable: Mo 11 Sep 2017 20:15:03 CEST
 Help: Use 'now' as the current time when setting.
 
-Option: /main/status/batterylevel
+OPTION: /main/status/batterylevel
 Label: Batterie Ladezustand
 Type: TEXT
-Current: 60%
+Current: 40%
 
-Option: /main/status/cameramodel
+OPTION: /main/status/cameramodel
 Label: Kameramodell
 Type: TEXT
 Current: D7000
 
-Option: /main/status/deviceversion
+OPTION: /main/status/deviceversion
 Label: Version des Gerätes
 Type: TEXT
 Current: V1.04
 
-Option: /main/status/manufacturer
+OPTION: /main/status/manufacturer
 Label: Kamera Hersteller
 Type: TEXT
 Current: Nikon Corporation
 
-Option: /main/status/serialnumber
+OPTION: /main/status/serialnumber
 Label: Seriennummer
 Type: TEXT
 Current: 6309099
 
-Option: /main/status/vendorextension
+OPTION: /main/status/vendorextension
 Label: Hersteller Erweiterung
 Type: TEXT
 Current: microsoft.com: 1.0
+
 ```
 
 ### Canon
 
 ```
-Option: /main/actions/autofocusdrive
+OPTION: /main/actions/autofocusdrive
 Label: Fahre Canon DSLR Autofokus
 Type: TOGGLE
 Current: 0
 
-Option: /main/actions/manualfocusdrive
+OPTION: /main/actions/manualfocusdrive
 Label: Fahre Canon DSLR manuellen Fokus
 Type: RADIO
 Current: Keine
@@ -471,53 +452,17 @@ Choice: 4 Weit 1
 Choice: 5 Weit 2
 Choice: 6 Weit 3
 
-Option: /main/actions/opcode
+OPTION: /main/actions/opcode
 Label: PTP Opcode
 Type: TEXT
 Current: 0x1001,0xparam1,0xparam2
 
-Option: /main/actions/viewfinder
+OPTION: /main/actions/viewfinder
 Label: Canon EOS Viewfinder
 Type: TOGGLE
 Current: 2
 
-Option: /main/capturesettings/exposurecompensation
-Label: Belichtungskorrektur
-Type: RADIO
-Current: 0
-Choice: 0 -5
-Choice: 1 -4.6
-Choice: 2 -4.3
-Choice: 3 -4
-Choice: 4 -3.6
-Choice: 5 -3.3
-Choice: 6 -3
-Choice: 7 -2.6
-Choice: 8 -2.3
-Choice: 9 -2
-Choice: 10 -1.6
-Choice: 11 -1.3
-Choice: 12 -1.0
-Choice: 13 -0.6
-Choice: 14 -0.3
-Choice: 15 0
-Choice: 16 0.3
-Choice: 17 0.6
-Choice: 18 1.0
-Choice: 19 1.3
-Choice: 20 1.6
-Choice: 21 2
-Choice: 22 2.3
-Choice: 23 2.6
-Choice: 24 3
-Choice: 25 3.3
-Choice: 26 3.6
-Choice: 27 4
-Choice: 28 4.3
-Choice: 29 4.6
-Choice: 30 5
-
-Option: /main/capturesettings/focusmode
+OPTION: /main/capturesettings/focusmode
 Label: Fokusmodus
 Type: RADIO
 Current: Einzel AF
@@ -525,20 +470,72 @@ Choice: 0 Einzel AF
 Choice: 1 AI Fokus
 Choice: 2 AI Servo
 
-Option: /main/capturesettings/shutterspeed
+OPTION: /main/capturesettings/shutterspeed
 Label: Belichtungszeit
 Type: RADIO
-Current: auto
-Choice: 0 auto
+Current: 30
+Choice: 0 Langzeitbelichtung
+Choice: 1 30
+Choice: 2 25
+Choice: 3 20
+Choice: 4 15
+Choice: 5 13
+Choice: 6 10
+Choice: 7 8
+Choice: 8 6
+Choice: 9 5
+Choice: 10 4
+Choice: 11 3.2
+Choice: 12 2.5
+Choice: 13 2
+Choice: 14 1.6
+Choice: 15 1.3
+Choice: 16 1
+Choice: 17 0.8
+Choice: 18 0.6
+Choice: 19 0.5
+Choice: 20 0.4
+Choice: 21 0.3
+Choice: 22 1/4
+Choice: 23 1/5
+Choice: 24 1/6
+Choice: 25 1/8
+Choice: 26 1/10
+Choice: 27 1/13
+Choice: 28 1/15
+Choice: 29 1/20
+Choice: 30 1/25
+Choice: 31 1/30
+Choice: 32 1/40
+Choice: 33 1/50
+Choice: 34 1/60
+Choice: 35 1/80
+Choice: 36 1/100
+Choice: 37 1/125
+Choice: 38 1/160
+Choice: 39 1/200
+Choice: 40 1/250
+Choice: 41 1/320
+Choice: 42 1/400
+Choice: 43 1/500
+Choice: 44 1/640
+Choice: 45 1/800
+Choice: 46 1/1000
+Choice: 47 1/1250
+Choice: 48 1/1600
+Choice: 49 1/2000
+Choice: 50 1/2500
+Choice: 51 1/3200
+Choice: 52 1/4000
 
-Option: /main/imgsettings/colorspace
+OPTION: /main/imgsettings/colorspace
 Label: Farbraum
 Type: RADIO
 Current: sRGB
 Choice: 0 sRGB
 Choice: 1 AdobeRGB
 
-Option: /main/imgsettings/iso
+OPTION: /main/imgsettings/iso
 Label: ISO-Empfindlichkeit
 Type: RADIO
 Current: 100
@@ -551,7 +548,7 @@ Choice: 5 1600
 Choice: 6 3200
 Choice: 7 6400
 
-Option: /main/imgsettings/whitebalance
+OPTION: /main/imgsettings/whitebalance
 Label: Weißabgleich
 Type: RADIO
 Current: Unbekannter Wert 0009
@@ -565,7 +562,7 @@ Choice: 6 Blitz
 Choice: 7 Manuell
 Choice: 8 Unbekannter Wert 0009
 
-Option: /main/other/5001
+OPTION: /main/other/5001
 Label: Batterie Ladezustand
 Type: MENU
 Current: 100
@@ -575,71 +572,71 @@ Choice: 2 75
 Choice: 3 0
 Choice: 4 50
 
-Option: /main/other/d303
+OPTION: /main/other/d303
 Label: PTP Property 0xd303
 Type: TEXT
 Current: 1
 
-Option: /main/other/d406
+OPTION: /main/other/d406
 Label: PTP Property 0xd406
 Type: TEXT
 Current: Unknown Initiator
 
-Option: /main/other/d407
+OPTION: /main/other/d407
 Label: PTP Property 0xd407
 Type: TEXT
 Current: 1
 
-Option: /main/settings/artist
+OPTION: /main/settings/artist
 Label: Künstler
 Type: TEXT
 Current: PicturePunxx.de
 
-Option: /main/settings/capturetarget
+OPTION: /main/settings/capturetarget
 Label: Aufnahmeziel
 Type: RADIO
 Current: interner Speicher
 Choice: 0 interner Speicher
 Choice: 1 Speicherkarte
 
-Option: /main/settings/copyright
+OPTION: /main/settings/copyright
 Label: Copyright
 Type: TEXT
 Current: www.picturepunxx.de
 
-Option: /main/settings/datetime
+OPTION: /main/settings/datetime
 Label: Kamera Datum und Zeit
 Type: DATE
-Current: 946681216
-Printable: Sa 01 Jan 2000 00:00:16 CET
+Current: 946681218
+Printable: Sa 01 Jan 2000 00:00:18 CET
 Help: Use 'now' as the current time when setting.
 
-Option: /main/status/batterylevel
+OPTION: /main/status/batterylevel
 Label: Batterie Ladezustand
 Type: TEXT
 Current: 100%
 
-Option: /main/status/cameramodel
+OPTION: /main/status/cameramodel
 Label: Kameramodell
 Type: TEXT
 Current: Canon EOS 550D
 
-Option: /main/status/deviceversion
+OPTION: /main/status/deviceversion
 Label: Version des Gerätes
 Type: TEXT
 Current: 3-1.0.9
 
-Option: /main/status/manufacturer
+OPTION: /main/status/manufacturer
 Label: Kamera Hersteller
 Type: TEXT
 Current: Canon Inc.
 
-Option: /main/status/serialnumber
+OPTION: /main/status/serialnumber
 Label: Seriennummer
 Type: TEXT
 Current: 6ef8f8a3ed3f445e93b237e0cdc72bf9
 
-Option: /main/status/vendorextension
+OPTION: /main/status/vendorextension
 Label: Hersteller Erweiterung
 Type: TEXT
 Current: Keine
