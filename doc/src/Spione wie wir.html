@@ -1,0 +1,653 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0050)http://perlmeister.com/snapshots/200606/index.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Spione wie wir</title>
+<link rev="made" href="mailto:root@localhost">
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="http://perlmeister.com/snapshots/200606/index.html#spione_wie_wir__linuxmagazin__juni_2006_">Spione wie wir (Linux-Magazin, Juni 2006)</a></li>
+	<ul>
+
+		<li><a href="http://perlmeister.com/snapshots/200606/index.html#maschinennahes_rasen">Maschinennahes Rasen</a></li>
+		<li><a href="http://perlmeister.com/snapshots/200606/index.html#differenzen">Differenzen</a></li>
+		<li><a href="http://perlmeister.com/snapshots/200606/index.html#infos">Infos</a></li>
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr>
+<p>
+</p>
+<h1><a name="spione_wie_wir__linuxmagazin__juni_2006_">Spione wie wir (Linux-Magazin, Juni 2006)</a></h1>
+<p>Mit Video4Linux lassen sich Webcams ansteuern und für
+Überwachungsaufgaben nutzen. Am Beispiel einer Creative NX Ultra zeigt
+der Perl-Snapshot wie Fotos richtig belichtet und Exemplare mit
+``Action'' erkannt und gesichert werden.</p>
+<p>Typische Webcams werden mit Windows-Software geliefert und damit ist
+unter Linux nicht viel anzufangen. Doch mit dem auf neueren Distributionen
+standardmaßig installierten Video4Linux ist es relative einfach,
+eine per USB-Stecker eingestöpselte Kamera anzusteuern und damit
+allerhand Schabernack zu treiben.</p>
+<p>Die in diesem Snapshot verwendete Kamera Creative NX Ultra liefert
+eigentlich Videos und kostet etwa 45 Dollar. Für die Benutzung als
+einfache Webcam ist sie eigentlich zu schade, aber sie lag in einer
+Schublade des Perlmeister-Labors und war verfügbar.
+Sie benötigt keine externe Stromversorgung und sobald der USB-Stecker
+im Rechner steckt, wird sie per Hot-Plugging von Linux erkannt. 
+Ihre Videodaten erscheinen typischerweise
+unter <code>/dev/video0</code>. Das Perl-Modul <code>Linux::Capture::V4l</code> vom CPAN
+beißt sich am Device-Eintrag fest, greift die Frame-Daten ab und
+erlaubt es, Aufnahmeparameter, wie die Empfindlichkeit der Kamera,
+laufend zu verändern.</p>
+<p>Listing <code>single</code> zeigt eine einfache Anwendung, die erst die
+Empfindlichkeit der Kamera auf 40.000 einstellt, dann ein Bild aus dem
+Videostrom abzwackt, und dieses anschließend als JPEG-Foto auf der
+Festplatte ablegt (Abbildung 2).</p>
+<h2>Listing 1: single</h2>
+<p>
+</p><pre>    01 #!/usr/bin/perl
+    02 use strict;
+    03 use warnings;
+    04 use Camcap;
+    05 
+    06 my $cam = Camcap-&gt;new(width  =&gt; 640, 
+    07                       height =&gt; 480);
+    08 $cam-&gt;cam_bright(42_000);
+    09 my $img = $cam-&gt;capture();
+    10 $img-&gt;write(file =&gt; 'buero.jpg') 
+    11   or die "Can't write: $!";
+</pre>
+<p></p><p>
+</p><table><tbody><tr><td> <img src="./Spione wie wir_files/webcam.jpg" width="300" height="199.2"> </td></tr><tr><td>
+<i>Abbildung 1: Die Kamera "NX Ultra" von Creative</i>
+</td></tr></tbody></table>
+<p></p><p>
+</p><table><tbody><tr><td> <img src="./Spione wie wir_files/buero3.jpg" width="266.666666666667" height="200"> </td></tr><tr><td>
+<i>Abbildung 2: Ein aus dem Video-Strom eingefangenes Bild der Webcam</i>
+</td></tr></tbody></table>
+<p></p><p>Das von <code>single</code> verwendete Modul in Listing Camcap.pm abstrahiert
+den Zugriff auf den Videostrom. Der Konstruktor ab Zeile 11 definiert
+einige Default-Parameter, wie die Bildbreite und Höhe und die
+minimale und die maximale Helligkeitseinstellung (<code>br_min</code>,
+<code>br_max</code>). Anschließend hängt sich der Code über das CPAN-Modul
+<code>Video::Capture::V4l</code> an das Video-Device <code>/dev/video0</code> an. Lauscht
+schon ein anderer Interessent daran, schlägt die Verbindung fehl.</p>
+<p>Die ab Zeile 33 definierte Methode <code>cam_bright()</code> stellt die
+Empfindlichkeit der Kamera ein. Sie nimmt einen Wert zwischen 0 und
+65535 entgegen, holt mit der Methode <code>picture()</code> die Picture-Struktur
+der Kamera, setzt mit <code>brightness()</code> die dort definierte
+Empfindlichkeit und stellt mit der anschließend aufgerufenen Methode
+<code>set()</code> den Wert in der Video4Linux-Schicht ein.</p>
+<p>Die ab Zeile 93 definierte Methode <code>capture</code> nimmt optional eine
+Empfindlichkeitseinstellung entgegen und macht sich dann daran, den
+nächsten Frame aus dem Videostrom abzugreifen. Der erste Frame wird
+mit der Nummer 0 gefangen und ein anschließender Aufruf der Methode
+<code>sync()</code> mit der Framenummer stellt sicher, dass die Bilddaten auch gut
+im Skalar <code>$frame</code> angekommen sind.</p>
+<p>Einige Tests zeigten, dass der erste vorbeisausende Frame manchmal
+nicht akzeptabel ist, da eine kurz zuvor eingestellte 
+Kameraempfindlichkeit noch nicht gegriffen hat. Deswegen holt
+<code>capture</code> grundsätzlich zwei Frames ab und wirft den ersten weg.</p>
+<p>Nach dem die Methode <code>sync()</code> zurückgekehrt ist, liegen in der
+Variablen <code>$frame</code> die rohen Bilddaten im BGR-Format. Jeder Pixel 
+wird in drei aufeinanderfolgenden Bytes mit seinen Blau-, Grün- und
+Rotwerten (jeweils 0-255) kodiert. Um daraus ein Bildformat zu generieren,
+das typische Bildverarbeitungsprogramme verstehen, kehrt das
+Kommando <code>reverse</code> den Bytestring zunächst um. Dies hat zur Folge,
+dass die Daten nun im etwas gängigeren RGB-Format vorliegen.</p>
+<h2>Listing 2: Camcap.pm</h2>
+<p>
+</p><pre>    001 ###########################################
+    002 package Camcap;
+    003 ###########################################
+    004 use strict;
+    005 use warnings;
+    006 use Video::Capture::V4l;
+    007 use Imager;
+    008 use Imager::Misc;
+    009 use Log::Log4perl qw(:easy);
+    010 
+    011 ###########################################
+    012 sub new {
+    013 ###########################################
+    014     my($class, @options) = @_;
+    015 
+    016     my $self = {
+    017         width   =&gt; 320,
+    018         height  =&gt; 240,
+    019         avg_opt =&gt; 128,
+    020         avg_acc =&gt; 20,
+    021         br_min  =&gt; 0,
+    022         br_max  =&gt; 65535,
+    023         @options,
+    024     };
+    025 
+    026     $self-&gt;{video} = 
+    027         Video::Capture::V4l-&gt;new() or
+    028             LOGDIE "Open video failed: $!";
+    029 
+    030     bless $self, $class;
+    031 }
+    032 
+    033 ###########################################
+    034 sub cam_bright {
+    035 ###########################################
+    036     my($self, $brightness) = @_;
+    037 
+    038     my $pic = $self-&gt;{video}-&gt;picture();
+    039     $pic-&gt;brightness($brightness);
+    040     $pic-&gt;set();
+    041 }
+    042 
+    043 ###########################################
+    044 sub img_avg {
+    045 ###########################################
+    046   my($img) = @_;
+    047 
+    048   my $br = Imager::Misc::brightness($img);
+    049   DEBUG "Brightness: $br";
+    050   return $br;
+    051 }
+    052 
+    053 ###########################################
+    054 sub calibrate {
+    055 ###########################################
+    056   my($self) = @_;
+    057 
+    058   DEBUG "Calibrating";
+    059 
+    060   return if 
+    061    img_avg($self-&gt;capture($self-&gt;{br_min}))
+    062    &gt; $self-&gt;{avg_opt};
+    063 
+    064   return if 
+    065    img_avg($self-&gt;capture($self-&gt;{br_max}))
+    066    &lt; $self-&gt;{avg_opt};
+    067 
+    068       # Binary search
+    069   my($low, $high) = ($self-&gt;{br_min}, 
+    070                      $self-&gt;{br_max});
+    071 
+    072   for(my $max = 5; 
+    073       $low &lt;= $high &amp;&amp; $max; 
+    074       $max--) {
+    075     my $try = int( ($low + $high) / 2);
+    076 
+    077     my $i  = $self-&gt;capture($try);
+    078     my $br = img_avg($i);
+    079 
+    080     DEBUG "br=$try got avg=$br";
+    081     return if abs($br-$self-&gt;{avg_opt}) &lt;= 
+    082               $self-&gt;{avg_acc};
+    083 
+    084     if($br &lt; $self-&gt;{avg_opt}) {
+    085         $low = $try + 1;
+    086     } else {
+    087         $high = $try - 1;
+    088     }
+    089   }
+    090   # Nothing found, use last setting
+    091 }
+    092 
+    093 ###########################################
+    094 sub capture {
+    095 ###########################################
+    096     my($self, $br) = @_;
+    097 
+    098     $self-&gt;cam_bright($br) if defined $br;
+    099 
+    100     my $frame;
+    101     for my $frameno (0, 1) {
+    102        $frame = $self-&gt;{video}-&gt;capture(
+    103               $frameno, $self-&gt;{width}, 
+    104               $self-&gt;{height});
+    105 
+    106        $self-&gt;{video}-&gt;sync($frameno) or 
+    107                LOGDIE "Unable to sync";
+    108     }
+    109 
+    110     my $i = Imager-&gt;new();
+    111     $frame = reverse $frame;
+    112     $i-&gt;read(
+    113       type =&gt; "pnm", 
+    114       data =&gt; "P6\n$self-&gt;{width} " .
+    115               "$self-&gt;{height}\n255\n" . 
+    116               $frame
+    117     );
+    118     $i-&gt;flip(dir =&gt; "hv");
+    119     return $i;
+    120 }
+    121 
+    122 1;
+</pre>
+<p></p><p>Wird das Ganze, wie in Zeile 113 geschehen, 
+noch von einem ``P6''-Header eingeleitet und die Breite
+und Höhe des Bildes angegeben, kann die Methode <code>read()</code> des 
+CPAN-Moduls <code>Imager</code> daraus ein Bild im PNM-Format zaubern. 
+Allerdings hat sich durch die Umkehrung mit <code>reverse</code> auch die Reihenfolge
+der Pixel umgedreht, so dass das Bild nun auf dem Kopf steht. Dies
+wird sofort durch einen Aufruf der Methode <code>flip</code> rückgängig gemacht,
+die mit den Parametern <code>dir =&gt; "hv"</code> eine vertikale 
+180-Grad-Spiegelung
+vornimmt. Die Methode <code>capture()</code> liefert ein Objekt vom Typ
+<code>Imager</code> zurück, das die aufrufende Funktion dann weiterverarbeiten kann.</p>
+<p>
+</p>
+<h2><a name="maschinennahes_rasen">Maschinennahes Rasen</a></h2>
+<p>Um die Kamera auf das Umgebungslicht einzustellen, wird
+ein Testbild untersucht und anhand dessen Helligkeit die Empfindlichkeit
+der Kamera entweder nach oben oder unten korrigiert. Doch wie 
+misst man, ob ein Bild 'richtig' belichtet wurde?</p>
+<p>Die Abbildungen 2 und 3 zeigen die Verteilungen aller RGB-Werte der
+Pixel zweier unterschiedlicher Bilder. Das Histogramm in Abbildung
+2 stammt von einem stark unterbelichteten Bild, das zwar einige RGB-Werte
+im unteren Bereich aufweist, dann aber schlagartig abreisst und
+keinerlei hellere Töne zeigt. Abbildung 3 hingegen zeigt ein Histogramm
+eines normal belichteten Bildes. Fast alle Werte zwischen 0 und 255 
+sind gleichmäßig vertreten.</p>
+<p>
+</p><table><tbody><tr><td> <img src="./Spione wie wir_files/hist1.png" width="300" height="122.222222222222"> </td></tr><tr><td>
+<i>Abbildung 3: Histogramm eines schwach ausgeleuchteten Fotos</i>
+</td></tr></tbody></table>
+<p></p><p>
+</p><table><tbody><tr><td> <img src="./Spione wie wir_files/hist2.png" width="300" height="122.074468085106"> </td></tr><tr><td>
+<i>Abbildung 4: Histogramm eines normal ausgeleuchtetes Bildes</i>
+</td></tr></tbody></table>
+<p></p><p>Um nun die Helligkeit eines aufgenommenen Testbildes zu bestimmen,
+verwenden wir eine primitiven Algorithmus: Alle RGB-Werte werden
+aufaddiert, durch drei und die Anzahl der Pixel geteilt, und wenn
+dann etwa die Hälfte von 256 herauskommt, ist das Bild einigermaßen
+ausgewogen.</p>
+<p>Allerdings ist Perl nicht gerade für solche Sprints konzipiert.
+Ein Bild mit 320 mal 240 Pixeln, von denen jeder einen Wert im
+Rot-, Blau- und Grün-Kanal hat, besitzt 230.400 Datenpunkte. 
+Diese alle abzuklappern, dauert Zeit, und wenn nicht jeder Zugriff
+blitzschnell erfolgt, gestaltet sich die Berechnung äußerst schleppend.</p>
+<p>Das Imager-Modul lässt sich aber glücklicherweise
+leicht auf C-Ebene erweitern. Dort
+kann man maschinennah durch die Datenstrukturen rasen und ermittelte
+Ergebnisse elegant ins Perlskript zurückgeben. Hierzu legt man in der
+entpackten Distribution des Imager-Moduls vom CPAN
+(denn einige Header werden gebraucht) einfach mit</p>
+<pre>    h2xs -Axn Imager::Misc</pre>
+<p>ein neues Unterverzeichnis <code>Imager-Misc</code> an.
+In der darunter entstandenen Datei 
+<code>Makefile.PL</code> ist die Zeile <code>INC =&gt; -I.</code>
+in <code>INC =&gt; -I..</code> umzuändern, damit ein nachfolgendes
+<code>perl Makefile.PL</code> und schließlich ein <code>make</code> auch die 
+Include-Dateien der Imager-Distribution findet.
+Außerdem hat <code>h2xs</code> auch eine Datei <code>Misc.xs</code> für den neuen
+C-Code erzeugt, der in Listing <code>Misc.xs</code> zu sehen ist.</p>
+<h2>Listing 3: Misc.xs</h2>
+<p>
+</p><pre>    01 #ifdef __cplusplus
+    02 extern "C" {
+    03 #endif
+    04 #include "EXTERN.h"
+    05 #include "perl.h"
+    06 #include "XSUB.h"
+    07 #include "ppport.h"
+    08 #ifdef __cplusplus
+    09 }
+    10 #endif
+    11 
+    12 #include "imext.h"
+    13 #include "imperl.h"
+    14 
+    15 DEFINE_IMAGER_CALLBACKS;
+    16 
+    17 /* ===================================== */
+    18 int
+    19 brightness(i_img *im) {
+    20   int     x, y;
+    21   i_color val;
+    22   double  sum;
+    23   int     br;
+    24   int     avg;
+    25 
+    26   for(x = 0; x &lt; im-&gt;xsize; x++) {
+    27     for(y = 0; y &lt; im-&gt;ysize; y++) {
+    28       i_gpix(im, x, y, &amp;val);
+    29       br = (val.channel[0] + val.channel[1]
+    30                      + val.channel[2]) / 3;
+    31       sum += br;
+    32     }
+    33   }
+    34 
+    35   avg = sum / ((int) (im-&gt;xsize) * 
+    36                (int) (im-&gt;ysize));
+    37   return avg;
+    38 }
+    39 
+    40 /* ===================================== */
+    41 int
+    42 changed(i_img *im1, i_img *im2, int diff) {
+    43   int     x, y, z, chan;
+    44   i_color val1, val2;
+    45   int     diffcount = 0;
+    46 
+    47   for(x = 0; x &lt; im1-&gt;xsize; x++) {
+    48     for(y = 0; y &lt; im1-&gt;ysize; y++) {
+    49 
+    50       i_gpix(im1, x, y, &amp;val1);
+    51       i_gpix(im2, x, y, &amp;val2);
+    52 
+    53       for(z = 0; z &lt; 3; z++) {
+    54         if(abs(val1.channel[z] - 
+    55                val2.channel[z]) &gt; diff)
+    56           diffcount++;
+    57       }
+    58     }
+    59   }
+    60 
+    61   return diffcount;
+    62 }
+    63 
+    64 /* ===================================== */
+    65 MODULE=Imager::Misc PACKAGE=Imager::Misc
+    66 
+    67 PROTOTYPES: ENABLE
+    68 
+    69 int
+    70 brightness(im)
+    71         Imager::ImgRaw im
+    72 
+    73 int
+    74 changed(im1, im2, diff)
+    75         Imager::ImgRaw im1
+    76         Imager::ImgRaw im2
+    77         int diff
+    78 
+    79 BOOT:
+    80         PERL_INITIALIZE_IMAGER_CALLBACKS;
+</pre>
+<p></p><p>Listing <code>Misc.xs</code> zeigt ab Zeile 18 
+den C-Code der Funktion <code>brightness()</code> 
+und ab Zeile 64 
+das notwendige Perl-XS-Voodoo, um ihn in ein Perl-Skript einzubinden.
+Die Breite des hereingereichten
+Bildes in Pixeln ist mit <code>im-&gt;xsize</code> verfügbar,
+die Höhe mit <code>im-&gt;ysize</code>. Zwei for-Schleifen laufen über alle
+Pixel und das Makro i_gpix ruft intern eine Funktion auf, die die
+Farbwerte eines Pixels der Bildposition (x,y) in der Struktur <code>val</code> ablegt.
+Anschließend kann zum Beispiel mit <code>val.channel[0]</code> der Rotwert
+des Pixels hervorgeholt werden.</p>
+<p>Das Modul <code>Imager::Misc</code> wird mit der bekannten Folge
+<code>perl Makefile.PL; make; make install</code> übersetzt und installiert.
+Bindet ein Perl-Skript das Modul mit <code>use Imager::Misc</code> ein,
+steht die Funktion <code>Imager::Misc::brightness</code> zur Verfügung,
+die ein Imager-Bild entgegennimmt und als Maß für dessen 
+Helligkeit einen Integerwert zurückliefert.</p>
+<p>Der einfache Algorithmus berechnet für das zu dunkle Bild in 
+Abbildung 3 den Wert 7, während sich für das normal belichtete
+Foto gemäß dem Histogramm in Abbildung 4 der Wert 125 für 
+<code>brightness()</code> ergibt.</p>
+<p>Um nun die Kamera auf die aktuell herrschenden 
+Lichtverhältnisse einzustellen, macht die Methode <code>calibrate()</code> 
+aus <code>Camcap.pm</code> eine Testaufnahme, ermittelt den Rückgabewert der
+schnellen <code>brightness</code>-Funktion und vergleicht ihn mit dem
+'Idealwert' 128. Ist der gemessene Wert darunter, stellt <code>calibrate()</code>
+mit <code>cam_bright()</code> eine höhere Kameraempfindlichkeit ein. Liegt
+der Messwert über dem Idealwert, ist das Bild also überbelichtet, 
+wird <code>cam_bright()</code> vor der nächsten Testaufnahme 
+mit einem reduzierten Wert aufgerufen.</p>
+<p>Am Anfang macht <code>calibrate()</code> zwei Aufnahmen mit maximaler bzw.
+minimaler Kameraempfindlichkeit. Stellt sich heraus, dass selbst 
+bei maximaler Empfindlichkeit das Bild zu dunkel (oder bei
+minimaler Empfindlichkeit das Bild zu hell) ist, hilft alles nichts
+und der gerade eingestellte Wert wird beibehalten.</p>
+<p>Lässt sich hingegen etwas ausrichten, startet ab Zeile 68 
+in <code>Capcam.pm</code> eine
+Binärsuche für die optimale Empfindlichkeit zwischen 0 und 65535. In
+maximal 5 Durchgängen wird jeweils in der Mitte des Intervalls eine
+Messung vorgenommen. Ist das Bild zu dunkel, fährt der Algorithmus
+in der oberen Hälfte des Intervalls mit der Suche fort. Ist es zu
+hell, kommt hingegen die untere Hälfte dran. Am Ende der Suche
+sollte die Kamera ein Bild produzieren, das einen Helligkeitswert von
+128 +/-20 (Unschärfeparameter avg_acc) liefert.</p>
+<p>
+</p>
+<h2><a name="differenzen">Differenzen</a></h2>
+<p>Läuft die Webcam ununterbrochen, produziert sie ein Unmenge an 
+Bildmaterial. Für Überwachungsaufgaben sollen aber nur diejenigen
+Bilder gespeichert werden, auf denen sich eine signifikante Änderung
+gegenüber der letzten Aufnahme zeigt.</p>
+<p>Hierzu definiert <code>Misc.xs</code> eine Funktion <code>changed</code>, die die Anzahl 
+der RGB-Werte zurückliefert, die in zwei Bildern unterschiedlich sind.
+Außer zwei Pointern auf <code>i_img</code>-Strukturen (Imager::ImgRaw-Objekte
+auf der Perl-Ebene) nimmt es mit dem Parameter <code>diff</code> eine
+Mindestdifferenz für Kanalwerte entgegen. Ist der Rotwert eines
+Pixels des ersten Bildes zum Beispiel 15 und der Rotwert des gleichen
+Pixels des zweiten Bildes 30, wird der Zähler <code>diffcount</code> um
+Eins erhöht, falls der <code>diff</code>-Paramter 15 oder größer ist.
+Damit sollen statistische Schwankungen kompensiert werden, die
+aufgrund von natürlichen Lichtschwankungen und des Rauschens von CCD-
+Chips unweigerlich auftreten,</p>
+<p>Das Skript <code>tracker</code> läuft in einer Endlosschleife, schießt Aufnahme
+um Aufnahme, speichert neue Bilder aber nur, falls 
+<code>Imager::Misc::changed()</code> eine signifikante Änderung signalsiert.
+Sonst überschreibt es einfach das letzte Bild im Cache,
+um graduellen Änderungen auf der Spur zu bleiben.</p>
+<p>Gesicherte Bilder landen in einem Cache der Marke
+<code>Cache::SharedMemoryCache</code> und werden automatisch nach 48 Stunden gelöscht.
+Die Bilder werden unter einem Datumschlüssel (z. B. ``2006/03/28-11:21:22'')
+gespeichert. Um das letzte Bild aus dem Cache zu holen, ruft <code>tracker</code>
+einfach die Cache-Funktion <code>get_keys()</code> auf, die sämtliche bekannten
+Schlüssel zurückliefert. Die Funktion <code>maxstr</code> aus dem Modul
+<code>List::Util</code> sucht sich daraus das jüngste Datum aus. Das zugehörige Bild
+liefert dann einfach die Cache-Funktion <code>get()</code> mit dem Schlüssel
+als Argument.</p>
+<p>Um die Kamera alle fünf Minuten neu zu kalibrieren und auf die
+aktuellen Lichtverhältnisse einzustellen, wird unter dem Schlüssel
+<code>calibrated</code> ein Eintrag im Cache abgelegt, der automatisch alle
+300 Sekunden gelöscht wird. Findet <code>tracker</code> den Eintrag nicht mehr,
+leitet es eine neue Kalibrierung ein und setzt den Eintrag neu.</p>
+<p>Das Skript <code>cacheprint</code> holt die Aufnahmen aus dem Cache, dank
+Shared Memory kann es tatsächlich auf die von <code>tracker</code> erzeugten
+Speicherdaten zugreifen.
+Aus den Daten macht es
+JPEG-Bilder us und legt sie auf der Festplatte 
+in einem neu erzeugten temporären
+Verzeichnis ab. Anschließend ruft <code>cacheprint</code> das Programm 
+<code>montage</code> aus dem Image-Magick-Fundus auf, das Linux-Distributionen
+üblicherweise beiliegt und Zusammenstellungen erzeugt, die wie
+Contact-Prints aussehen.
+Der anschließend aufgerufene Viewer <code>xv</code> holt die Thumbnails mit den
+zugehörigen Datumsangaben auf dem Bildschirm (Abbildung 5).</p>
+<p>Abbildung 4 zeigt den kontinuierlichen Strom von Aufnahmen, den 
+<code>tracker</code> für speichernswert hielt. Sie zeigen die surreale Welt
+der Perlmeister-Studios mit der Besetzungscouch im Vordergrund.
+Um 0:09 wird das Licht im Arbeitszimmer ausgeknipst, und ab 1:17
+tut sich dann auch in der restlichen sichtbaren Wohnung nichts mehr.
+Bei graduellen Veränderungen zwischen 1:17 und 6:45 wurde die Aufnahme
+mit dem Zeitstempel 01:17:03 kontinuierlich überschrieben,
+bis um 06:45:47 eine im dunkeln tappende Person eine signifikante
+Anzahl von Pixels verändert und <code>tracker</code> die Bewegung registriert. 
+Um 07:07:56 wird der Vorhang aufgezogen und das Tageslicht fällt herein.</p>
+<h2>Listing 4: tracker</h2>
+<p>
+</p><pre>    01 #!/usr/bin/perl
+    02 use strict;
+    03 use warnings;
+    04 use Camcap;
+    05 use Imager::Misc;
+    06 use Log::Log4perl qw(:easy);
+    07 use Cache::SharedMemoryCache;
+    08 use Time::Piece;
+    09 use List::Util qw(maxstr);
+    10 
+    11 my $c = Cache::SharedMemoryCache-&gt;new({
+    12     namespace          =&gt; "tracker",
+    13     default_expires_in =&gt; 48*3600 });
+    14 
+    15 Log::Log4perl-&gt;easy_init($DEBUG);
+    16 
+    17 my $cam = Camcap-&gt;new();
+    18 
+    19 while(1) {
+    20   my $lkey = maxstr grep /\d/,
+    21                     $c-&gt;get_keys();
+    22 
+    23   if(! $c-&gt;get("calibrated")) {
+    24     $cam-&gt;calibrate();
+    25     $c-&gt;set("calibrated", 1, 300);
+    26     my $img = $cam-&gt;capture();
+    27     saveimg($img, $c, $lkey);
+    28     next;
+    29   }
+    30 
+    31   my $img = $cam-&gt;capture();
+    32 
+    33   if($lkey) {
+    34     my $limg = Imager-&gt;new();
+    35     $limg-&gt;read(type =&gt; "jpeg", 
+    36                 data =&gt; $c-&gt;get($lkey));
+    37     my $dpix = Imager::Misc::changed($limg,
+    38                                  $img, 80);
+    39     DEBUG "$dpix pixels changed";
+    40     if($dpix &gt; 2000) {
+    41         saveimg($img, $c);
+    42         next;
+    43     } else {
+    44           # minor change, 
+    45           # refresh reference
+    46         saveimg($img, $c, $lkey);
+    47     }
+    48   } else {
+    49       # save first img
+    50     saveimg($img, $c);
+    51   }
+    52 
+    53   sleep(1);
+    54 }
+    55 
+    56 ###########################################
+    57 sub saveimg {
+    58 ###########################################
+    59     my($img, $cache, $date) = @_;
+    60 
+    61     if(! $date) {
+    62         $date = localtime()-&gt;
+    63              strftime("%Y/%m/%d-%H:%M:%S");
+    64     }
+    65 
+    66     DEBUG "Saving image $date";
+    67     $img-&gt;write(type =&gt; "jpeg", 
+    68                 data =&gt; \my $val) or die;
+    69     $cache-&gt;set($date, $val);
+    70 }
+</pre>
+<p></p><h2>Listing 5: cacheprint</h2>
+<p>
+</p><pre>    01 #!/usr/bin/perl -w
+    02 use strict;
+    03 use Imager;
+    04 use Cache::FileCache;
+    05 use Time::Piece;
+    06 use List::Util qw(maxstr);
+    07 use Sysadm::Install qw(rmf mkd cd);
+    08 use File::Temp qw(tempdir);
+    09 use Log::Log4perl qw(:easy);
+    10 Log::Log4perl-&gt;easy_init($DEBUG);
+    11 
+    12 use DateTime;
+    13 use DateTime::Format::Strptime;
+    14 my $format = DateTime::Format::Strptime-&gt;new(
+    15                         pattern   =&gt; "%Y/%m/%d-%H:%M:%S");
+    16 my $today  = DateTime-&gt;today();
+    17 
+    18 my $dir = tempdir(CLEANUP =&gt; 1);
+    19 print "dir=$dir\n";
+    20 
+    21 my $c = Cache::FileCache-&gt;new({
+    22     namespace =&gt; "tracker",
+    23 });
+    24 
+    25 $c-&gt;Purge();
+    26 
+    27 for my $date (sort $c-&gt;get_keys()) {
+    28 
+    29   next unless $date =~ /\d/;
+    30 
+    31   # 2006/05/19-01:02:40
+    32   my $dt = $format-&gt;parse_datetime($date);
+    33   die "Cannot parse '$date'" unless $dt;
+    34 
+    35   my $days = $dt-&gt;delta_days($today)-&gt;delta_days();
+    36   next if $days &gt; 1;
+    37   print "$dt: days: $days\n";
+    38 
+    39   my $val = $c-&gt;get($date);
+    40   my $img = Imager-&gt;new();
+    41   $img-&gt;read(type =&gt; "jpeg", 
+    42              data =&gt; $val);
+    43   $date =~ s#/#-#g;
+    44   DEBUG "Writing $date";
+    45   $img-&gt;write(file =&gt; "$dir/$date.jpg") or 
+    46       warn "Can't write $dir/$date.jpg ($!)";
+    47 }
+    48 
+    49 cd $dir;
+    50 my $str = "";
+    51 for (&lt;*.jpg&gt;) {
+    52     (my $date = $_) =~ s/\.jpg//g;
+    53     $str .= "-label $date $_ ";
+    54 }
+    55 `montage -tile 6x6 $str sequence.jpg`;
+    56 `xv $_` for &lt;sequence*&gt;;
+</pre>
+<p></p><p>
+</p><table><tbody><tr><td> <img src="./Spione wie wir_files/sequence.png" width="175.342465753425" height="200"> </td></tr><tr><td>
+<i>Abbildung 5: Die von 'tracker' ausgewählten Bilder, ausgegeben vom Skript 'cacheprint'.</i>
+</td></tr></tbody></table>
+<p></p><p>
+</p>
+<h2><a name="infos">Infos</a></h2>
+<dl>
+<dt><strong><a name="item__5b1_5d">[1]</a></strong><br>
+</dt>
+<dd>
+Listings zu diesem Artikel:
+<a href="ftp://www.linux-magazin.de/pub/listings/magazin/2006/06/Perl">ftp://www.linux-magazin.de/pub/listings/magazin/2006/06/Perl</a>
+</dd>
+<p></p>
+<dt><strong><a name="item__5b2_5d">[2]</a></strong><br>
+</dt>
+<dd>
+Definition der Bildhelligkeit:
+<a href="http://en.wikipedia.org/wiki/Brightness">http://en.wikipedia.org/wiki/Brightness</a>
+</dd>
+<p></p>
+<dt><strong><a name="item__5b3_5d">[3]</a></strong><br>
+</dt>
+<dd>
+Marc Lehmann, ``Capturing Video in Real Time'', 
+The Perl Journal, 2005/02
+</dd>
+<p></p>
+<dt><strong><a name="item__5b4_5d">[4]</a></strong><br>
+</dt>
+<dd>
+Website des Perl-Moduls Imager: <a href="http://imager.perl.org/">http://imager.perl.org/</a>
+</dd>
+<p></p></dl>
+<table><tbody><tr><td>
+<a href="http://perlmeister.com/snapshots/data/lmbig.jpg"><img src="./Spione wie wir_files/lmsmall.jpg" align="top"></a></td><td>
+<h2>Michael Schilli</h2>
+arbeitet als Software-Engineer bei Yahoo! in Sunnyvale, Kalifornien.
+Er hat "Goto Perl 5" (deutsch) und "Perl Power" (englisch)
+für Addison-Wesley geschrieben und ist unter mschilli@perlmeister.com
+zu erreichen. Seine Homepage: 
+<a href="http://perlmeister.com/">http://perlmeister.com</a>.</td></tr></tbody></table>
+
+
+
+</body></html>

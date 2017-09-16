@@ -1,0 +1,71 @@
+#!/usr/bin/perl
+###########################################
+use strict;
+use warnings;
+use Camcap;
+use Imager::Misc;
+use Log::Log4perl qw(:easy);
+use Cache::SharedMemoryCache;
+use Time::Piece;
+use List::Util qw(maxstr);
+
+my $c = Cache::SharedMemoryCache->new({
+    namespace          => "tracker",
+    default_expires_in => 48*3600 });
+
+Log::Log4perl->easy_init($DEBUG);
+
+my $cam = Camcap->new();
+
+while(1) {
+  my $lkey = maxstr grep /\d/,
+                    $c->get_keys();
+
+  if(! $c->get("calibrated")) {
+    $cam->calibrate();
+    $c->set("calibrated", 1, 300);
+    my $img = $cam->capture();
+    saveimg($img, $c, $lkey);
+    next;
+  }
+
+  my $img = $cam->capture();
+
+  if($lkey) {
+    my $limg = Imager->new();
+    $limg->read(type => "jpeg", 
+                data => $c->get($lkey));
+    my $dpix = Imager::Misc::changed($limg,
+                                 $img, 80);
+    DEBUG "$dpix pixels changed";
+    if($dpix > 2000) {
+        saveimg($img, $c);
+        next;
+    } else {
+          # minor change, 
+          # refresh reference
+        saveimg($img, $c, $lkey);
+    }
+  } else {
+      # save first img
+    saveimg($img, $c);
+  }
+
+  sleep(1);
+}
+
+###########################################
+sub saveimg {
+###########################################
+    my($img, $cache, $date) = @_;
+
+    if(! $date) {
+        $date = localtime()->
+             strftime("%Y/%m/%d-%H:%M:%S");
+    }
+
+    DEBUG "Saving image $date";
+    $img->write(type => "jpeg", 
+                data => \my $val) or die;
+    $cache->set($date, $val);
+}
