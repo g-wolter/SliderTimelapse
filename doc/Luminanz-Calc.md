@@ -1,7 +1,7 @@
 # Luminanzberechnung
 
 ## Subroutine aus Timelapse-Deflicker
-(Timelapse Deflicker)[https://github.com/cyberang3l/timelapse-deflicker]
+[Timelapse Deflicker](https://github.com/cyberang3l/timelapse-deflicker)
 
 ```perl
 sub luminance_det {
