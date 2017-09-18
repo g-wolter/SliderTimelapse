@@ -1,5 +1,6 @@
 # Luminanzberechnung
 
+```perl
 sub luminance_det {
   my $progress    = Term::ProgressBar->new( { count => $max_entries } );
 
@@ -53,3 +54,4 @@ sub luminance_det {
     $progress->update( $i + 1 );
   }
 }
+```
