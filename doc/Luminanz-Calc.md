@@ -1,5 +1,12 @@
 # Luminanzberechnung
 
+Grundidee ist: RAW Files können locker bis etwa 2 Stops über/unterbelichtung gerettet werden, daher erst die Verschlusszeit/ISO erhöhen, wenn die Luminanzdifferenz zwischen Referenzfoto und Testfoto > 2 Stops ist. Folgende grundlegende Optionen werden berücksichtigt:
+
+1. Referenz -> Test: Es wird jedes Bild gegen das Referenz Bild verglichen
+2. Referenz -> Test -> Test: Es wird nur beim ersten Foto gegen das Referenz Foto verglichen, bei jedem weiteren wird gegen das vorherig Testfoto verglichen.
+
+
+
 ## Subroutine aus Timelapse-Deflicker
 [Timelapse Deflicker](https://github.com/cyberang3l/timelapse-deflicker)
 
