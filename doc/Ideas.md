@@ -61,6 +61,10 @@ for i in range (12970):
 
 ## Gphoto und Timelapse
 
+## Luminanzbestimmung
+
+* [Luminanzberechnung](https://github.com/tbrumm/SliderTimelapse/blob/master/doc/Luminanz-Calc.md)
+
 ### Software
 
 * [gphoto2 Timelapse](https://github.com/jflalonde/gphoto2-timelapse)
