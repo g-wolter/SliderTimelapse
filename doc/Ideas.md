@@ -9,6 +9,8 @@ Das Ganze soll nach einmaligem Setup autark laufen und so weit wie möglich vom 
 Die Steuerung soll im ersten Step über die CLI erfolgen, ein Webinterface könnte ggf. nachträglich zugefügt
 werden.
 
+![SliderTimeLapse Process](SliderTimeLapseControl.png)
+
 ## 120cm Slider und Schrittmotor
 Der Schrittmotor braucht für meinen 120cm Slider genau 12970 Schritte. In der schnellsten Steuerungseinstellung
 benötigt er dafür 3,8 Minuten. In dem Script [slider.py](https://github.com/tbrumm/SliderTimelapse/blob/master/doc/src/slider.py) sind folgende Einstellungen anzupassen:
