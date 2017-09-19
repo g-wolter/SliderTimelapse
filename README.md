@@ -1,5 +1,5 @@
 # SliderTimelapse
-Erstmal nur ein Repository um meine Code Schnipsel für die Slider und Camera Steuerung zu sammeln.
+:de: Erstmal nur ein Repository um meine Code Schnipsel für die Slider und Camera Steuerung zu sammeln.
 
 Inhalt:
 - [Teileliste](https://github.com/tbrumm/SliderTimelapse/blob/master/doc/Parts.md)
