@@ -3,6 +3,8 @@ Liste mit benötigten/verwendeten Teilen
 - HAUSER & PICARD Kamera Slider "Kimahri" 120 cm (47‘‘) by eSmart 
   (https://www.amazon.de/gp/product/B00NGJZBRO/ref=oh_aui_detailpage_o01_s00?ie=UTF8&psc=1)
   
+  ![Slider](SliderTimelapse/doc/pic/Slider.png)
+  
 - 12Kg Stativkopf Aluminium Kamera Stativ Kugelkopf mit 1/4'' Schnellwechselplatte für DSLR Kamera
   (https://www.amazon.de/gp/product/B01LVV2LXJ/ref=oh_aui_detailpage_o06_s00?ie=UTF8&psc=1)
   
