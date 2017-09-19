@@ -8,11 +8,17 @@ Liste mit benötigten/verwendeten Teilen
 - 12Kg Stativkopf Aluminium Kamera Stativ Kugelkopf mit 1/4'' Schnellwechselplatte für DSLR Kamera
   (https://www.amazon.de/gp/product/B01LVV2LXJ/ref=oh_aui_detailpage_o06_s00?ie=UTF8&psc=1)
   
+![Stativkopf](pic/Stativkopf.png)
+  
 - 28BYJ-48 28BYJ48 DC 5V 4-Phase 5-Wire Arduino Stepper Motor with ULN2003 Driver Board
   (https://www.amazon.de/gp/product/B00ATA5MFE/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1)
   
+![Stepper](pic/Stepper.png)
+  
 - Anpro 6M GT2 Zahnriemen mit 7x 5mm Riemenscheiben 20 Zähne Bohrung
   (https://www.amazon.de/gp/product/B06Y67NCZL/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1)
+  
+![Zahnriemen](pic/Zahnriemen.png)
   
 - EasyAcc 20000mAh Outdoor Power Bank mit IP67 Zertifizierung
   (https://www.amazon.de/gp/product/B01B73I5ZU/ref=oh_aui_detailpage_o01_s00?ie=UTF8&psc=1)
