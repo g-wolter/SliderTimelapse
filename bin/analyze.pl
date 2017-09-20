@@ -27,28 +27,18 @@ foreach my $filename (@files) {
 		my $exifTool = new Image::ExifTool;
 		my $info = $exifTool->ImageInfo($filename);
 
-		print "Procecssing File: $filename \n";	
-		my $ExposureTime = $exifTool->GetValue('ExposureTime');
-		print "ExposureTime: $ExposureTime \n";
+		print "Procecssing File: $filename \n";
 
-		my $FileSize = $exifTool->GetValue('FileSize');
-		print "FileSize: $FileSize \n";
-	
-		my $ISO = $exifTool->GetValue('ISO');
-		print "ISO: $ISO \n";
-	
 		my $Make = $exifTool->GetValue('Make');
 		print "Make: $Make \n";
 
-		my $Megapixels = $exifTool->GetValue('Megapixels');
-		print "Megapixels: $Megapixels \n";
+		my $ISO = $exifTool->GetValue('ISO');
+		print "ISO: $ISO \n";
 
 		my $ShutterSpeed = $exifTool->GetValue('ShutterSpeed');
 		print "ShutterSpeed: $ShutterSpeed \n";
 
-		my $ShutterSpeedValue = $exifTool->GetValue('ShutterSpeedValue');
-		print "ShutterSpeedValue: $ShutterSpeedValue \n";
 		print "========================================\n";
-	}	
+	}
 
 }
