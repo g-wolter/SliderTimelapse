@@ -71,6 +71,10 @@ for i in range (12970):
 
 * [gphoto2::Control](https://github.com/plusyan/perl/blob/master/modules/gphoto2/control.pm)
 
+## GPIO with Perl
+
+* [GPIO Examples with Perl](http://elinux.org/RPi_GPIO_Code_Samples#Perl)
+
 ### Software
 
 * [gphoto2 Timelapse](https://github.com/jflalonde/gphoto2-timelapse)
