@@ -67,6 +67,10 @@ for i in range (12970):
 
 * [Luminanzberechnung](https://github.com/tbrumm/SliderTimelapse/blob/master/doc/Luminanz-Calc.md)
 
+## gPhoto2 und Perl
+
+* [gphoto2::Control](https://github.com/plusyan/perl/blob/master/modules/gphoto2/control.pm)
+
 ### Software
 
 * [gphoto2 Timelapse](https://github.com/jflalonde/gphoto2-timelapse)
