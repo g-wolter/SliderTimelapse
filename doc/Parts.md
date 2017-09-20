@@ -38,4 +38,4 @@ Liste mit benötigten/verwendeten Teilen
 - Neuftech 40x 20cm "female female" "male female" "male male" jumper wire kabel Steckbrücken
   (https://www.amazon.de/gp/product/B00QV7O052/ref=oh_aui_detailpage_o02_s00?ie=UTF8&psc=1)
 
-![Kabel](pic/Kabel.png)
+![Kabel](pic/Kabel.jpg)
