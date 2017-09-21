@@ -6,6 +6,8 @@
 # Thanks to Vangelis for this brilliant work.
 # At the moment, if reads the actual directory and determines the luminance of every
 # in there. Some test pictures can be found below doc/pic.
+# 
+# Attention: At the moment, it only checks for files in actual folder and does nothing
 
 use Getopt::Std;
 use strict "vars";
@@ -15,6 +17,12 @@ use Image::ExifTool qw(:Public);
 use Data::Dumper;
 use File::Type;
 
+
+
+###############################################################################################################
+# Handle ImageMagick Specials
+###############################################################################################################
+
 # Read the version of the imagemagick library that is currently used.
 my ( $_im_version ) = Image::Magick->new->Get('version') =~ /\s+(\d+\.\d+\.\d+-\d+)\s+/;
 my $im_version = version->parse($_im_version =~ s/-/./r);
@@ -23,6 +31,13 @@ my $imStatsChangedVer = version->parse("6.9.0.0");
 
 my $im_version = version->parse($_im_version =~ s/-/./r);
 my $statFieldsPerColChannel = $im_version >= $imStatsChangedVer ? 8 : 7;
+
+###############################################################################################################
+
+
+###############################################################################################################
+# Constants for Image Magick Luminance Statistics
+###############################################################################################################
 
 # Pixel Channel Constants as defined in PixelChannel enum in MagicCore/pixel.h
 use constant {
@@ -44,11 +59,17 @@ use constant {
         statoffset_entropy => 7,
 };
 
+###############################################################################################################
+
 # Create hash to hold luminance values.
 my %luminance;
 
 # for floating luminance
 my @lum = qw(0 0 0 0 0);
+
+###############################################################################################################
+# Directory File Handling
+###############################################################################################################
 
 # The working directory is the current directory.
 my $data_dir = ".";
@@ -93,20 +114,61 @@ if ( $max_entries < 1 ) { die "Cannot process less than one files.\n" }
 say "$max_entries image files to be processed.";
 say "Original luminance of Images is being calculated";
 
+###############################################################################################################
+
+
+
+###############################################################################################################
+# Real Programm Part starts here
+###############################################################################################################
+
+
+# Check Image Settings
+image_settings();
+
 #Determine luminance of each file and add to the hash.
 luminance_det();
 
-#Determine luminance of each image; add to hash.
+
+
+
+
+###############################################################################################################
+# Subroutinen ab hier
+###############################################################################################################
+
+sub slide{
+
+}
+
+sub take_picture{
+
+}
+
+sub read_reference{
+	# subrouting to read the needed values from a reference picture
+}
+
+sub image_settings {
+	# check every image for iso and shutter values
+	
+	for ( my $i = 0; $i < $max_entries; $i++ ) {	
+		my $exifTool = new Image::ExifTool;
+		my $info = $exifTool->ImageInfo($luminance{$i}{filename});
+		my $ISO = $exifTool->GetValue('ISO');
+		say "ISO: $ISO ";
+
+		my $ShutterSpeed = $exifTool->GetValue('ShutterSpeed');
+		say "ShutterSpeed: $ShutterSpeed \n";
+	}
+}
+
 sub luminance_det {
+	#Determine luminance of each image; add to hash.
 
 	for ( my $i = 0; $i < $max_entries; $i++ ) {
 
-		#Create ImageMagick object for the image
 		my $image = Image::Magick->new;
-
-		#Create ExifTools Object.
-		my $exifTool = new Image::ExifTool;
-		my $info = $exifTool->ImageInfo($luminance{$i}{filename});
 
 		#Evaluate the image using ImageMagick.
 		$image->Read($luminance{$i}{filename});
@@ -121,32 +183,14 @@ sub luminance_det {
 
 		# We use the following formula to get the perceived luminance.
 		# Set it as the original and target value to start out with.
-
 		$luminance{$i}{value} = $luminance{$i}{original} = 0.299 * $R + 0.587 * $G + 0.114 * $B;
 
 		say "Procecssing File: $luminance{$i}{filename} \n";
-
-		my $Make = $exifTool->GetValue('Make');
-		say "Make: $Make \n";
-
-		my $ISO = $exifTool->GetValue('ISO');
-		say "ISO: $ISO \n";
-
-		my $ShutterSpeed = $exifTool->GetValue('ShutterSpeed');
-		say "ShutterSpeed: $ShutterSpeed \n";
-
 		say "Luminance of file $luminance{$i}{filename}: $luminance{$i}{value}";
-
+		
 		# Berechnung der floating luminance
 		shift(@lum);
 		push(@lum, $luminance{$i}{value});
-		
-		#print "========================================\n";
-		#print "\nLum Array: ";
-		#print @lum;
-
-		print "\n========================================\n";
-
 
 		if(scalar(@lum) > 0){
 			my $sum = 0;
