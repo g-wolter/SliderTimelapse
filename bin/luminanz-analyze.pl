@@ -47,6 +47,9 @@ use constant {
 # Create hash to hold luminance values.
 my %luminance;
 
+# for floating luminance
+my @lum = qw(0 0 0 0 0);
+
 # The working directory is the current directory.
 my $data_dir = ".";
 opendir( DATA_DIR, $data_dir ) || die "Cannot open $data_dir\n";
@@ -134,6 +137,24 @@ sub luminance_det {
 
 		say "Luminance of file $luminance{$i}{filename}: $luminance{$i}{value}";
 
-		print "========================================\n";
+		# Berechnung der floating luminance
+		shift(@lum);
+		push(@lum, $luminance{$i}{value});
+		
+		#print "========================================\n";
+		#print "\nLum Array: ";
+		#print @lum;
+
+		print "\n========================================\n";
+
+
+		if(scalar(@lum) > 0){
+			my $sum = 0;
+			$sum += $_ for(@lum);
+			my $avg = $sum / scalar(@lum);
+			print "Floating Luminance: ";
+			print $avg,"\n";
+		}
+
 	}
 }
