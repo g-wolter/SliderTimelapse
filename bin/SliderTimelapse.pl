@@ -10,5 +10,6 @@ use slider::calc;
 use slider::luminanz;
 use slider::float;
 use slider::slide;
+use slider::analyze;
 use Data::Dumper;
 use File::Path 'make_path';
