@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 use feature 'say';
-package gphoto2::control;
+package slider::control;
 use Data::Dumper;
 
 use POSIX 'strftime';
@@ -21,7 +21,7 @@ sub getTimeStamp{
 		$self->_setError("No time stamp.");
 		return undef;
 	}
-	
+
 	return $$self{timeStamp};
 }
 
@@ -37,15 +37,15 @@ sub _setError{
 
 sub _setConfig{
 	my ($self,$key,$value)=@_;
-	
+
 	unless ($key && $value){
 		$self->_setError("No key, or value passed.");
 		return undef;
 	}
-	
+
 	$$self{$key}=$value;
 	1;
-	
+
 }
 
 sub _getConfigParameter{
@@ -66,15 +66,15 @@ sub _execCommand{
 	# TODO: Check if the device is sleeping. If so, wake it up (if possible).
 	# TODO: --camera does NOT work, if --port is not specified.
 	# Use --port istead of --camera
-	
+
 	unshift @command,'gphoto2';
 	if ($$self{device} && $$self{port}){
 		push @command,'--camera=' . '"' . $$self{device}. '"';
 		push @command,'--port=' . '"' . $$self{port}. '"';
 	}
-	
+
 	say "Command: @command";
-	
+
 	my @result=`@command 2>&1`;
 	unless ($? == 0){
 		$self->_setError("Error durring command execution: @command. The otuput was: @result");
@@ -111,7 +111,7 @@ sub getConnectedDevices{
 			$camera=~s/\s+$//;
 			$port=~s/^\s+//;
 			$port=~s/\s+$//;
-			
+
 			# We may connect two Canon 40D cameras for example, but we cannot connect them the to the same port.
 			$result{$port}=$camera;
 		}
@@ -135,7 +135,7 @@ sub setDevice{
 }
 
 sub setPicturePrefix{
-	my ($self,$prefix)=@_;	
+	my ($self,$prefix)=@_;
 	unless ($prefix){
 		_setError("No prefix given.");
 		return undef;
@@ -145,7 +145,7 @@ sub setPicturePrefix{
 }
 
 sub setPictureSufix{
-	my ($self,$sufix)=@_;	
+	my ($self,$sufix)=@_;
 	unless ($sufix){
 		_setError("No sufix given.");
 		return undef;
@@ -177,7 +177,7 @@ sub takeSingleShot{
 	}
 	# Take the picture BEFORE increasing the counter. This way we may return the counter any time for user reference.
 	# I.e. way may print: Will take the picture with number: xxxxx
-	
+
 	########################## Take The Picture Here #################################
 	my $workDir=$self->_getConfigParameter('outputDir');
 	if ( defined $workDir){
@@ -223,13 +223,13 @@ sub takeBracketedShots{
 	}
 	# Check if we have digits for bracketing.
 	say "Taking pictures with the following compensations:  (@stops)";
-	
+
 	my $device=$self->_getConfigParameter('device');
 	unless ($device){
 		$self->_setError("No device given !");
 		return undef;
 	}
-	
+
 	########################## Take The Picture Here #################################
 	my $workDir=$self->_getConfigParameter('outputDir');
 	if ( defined $workDir){
@@ -238,7 +238,7 @@ sub takeBracketedShots{
 			return undef;
 		}
 	}
-	
+
 	foreach my $compensation (@stops){
 		my @command=('--capture-image-and-download','--force-overwrite',"--set-config-value /main/capturesettings/exposurecompensation=$compensation", '--filename');
 		my $prefix=$self->_getConfigParameter('filePrefix');
@@ -247,9 +247,9 @@ sub takeBracketedShots{
 		my $filename=undef;
 		$filename=$prefix if $prefix;
 		$filename .=$counter ."[$compensation]" ;
-		
+
 		#TODO: Set the bracketed exposure somewhere here !
-		
+
 		$filename .=$sufix if $sufix;
 		push @command,$filename;
 		say "Command:";
@@ -261,7 +261,7 @@ sub takeBracketedShots{
 	my $c=$self->_getConfigParameter('picturesCounter');
 	$c++;
 	$self->_setConfig('picturesCounter',$c);
-	
+
 }
 
 1;
