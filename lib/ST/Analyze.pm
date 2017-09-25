@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 use feature 'say';
-package slider::analyze;
+package ST::Analyze;
 use Data::Dumper;
 use Getopt::Std;
 use Image::ExifTool qw(:Public);

@@ -3,5 +3,5 @@
 use strict;
 use warnings;
 use feature 'say';
-package slider::float;
+package ST::Calc;
 use Data::Dumper;

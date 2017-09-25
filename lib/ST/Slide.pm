@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 use feature 'say';
-package slider::slide;
+package ST::Slide;
 use Data::Dumper;
 
 # First Part from: http://search.cpan.org/~mikem/Device-BCM2835-1.0/lib/Device/BCM2835.pm

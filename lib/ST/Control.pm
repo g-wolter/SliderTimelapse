@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 use feature 'say';
-package slider::control;
+package ST::Control;
 use Data::Dumper;
 
 use POSIX 'strftime';
