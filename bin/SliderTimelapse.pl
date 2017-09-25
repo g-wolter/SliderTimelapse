@@ -15,12 +15,9 @@ use ST::Analyze;
 
 use Data::Dumper;
 
-my $calc = new ST::Calc();
+my $lum = ST::Luminanz->GetLuminanceInfo('/opt/SliderTimelapse/pic/Sonnenuntergang.jpg');
+print "Luminanz: $lum\n";
 
-my $lum = new ST::Luminanz();
-
-my $float = new ST::Float();
-
-my $slide = new ST::Slide();
-
-my $ana = new ST::Analyze();
+my ($iso, $shutter) = ST::Analyze->GetImageInfo('/opt/SliderTimelapse/pic/Sonnenuntergang.jpg');
+print "ISO: $iso \n";
+print "SHU: $shutter \n";
