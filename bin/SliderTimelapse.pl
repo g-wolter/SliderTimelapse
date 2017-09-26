@@ -12,14 +12,18 @@ use ST::Luminanz;
 use ST::Float;
 use ST::Slide;
 use ST::Analyze;
-
+use ST::Log;
+use POSIX qw/ strftime /;
 use Data::Dumper;
 
-my $testfile = '/opt/SliderTimelapse/pic/Sonnenuntergang.jpg';
+my $date = strftime("%Y%m%d%H%M%S", localtime);
 
-my $lum = ST::Luminanz->GetLuminanceInfo($testfile);
+my $lum = ST::Luminanz->GetLuminanceInfo($file);
 print "Luminanz: $lum\n";
 
-my ($iso, $shutter) = ST::Analyze->GetImageInfo($testfile);
-print "ISO: $iso \n";
-print "SHU: $shutter \n";
+my ($iso, $shutter) = ST::Analyze->GetImageInfo($file);
+print "Hauptprogramm - ISO: $iso \n";
+print "Hauptprogramm - SHU: $shutter \n";
+
+my $logentry = "\[$date\] \[ISO: $iso\] \[SHU: $shutter\] \[LUM: $lum\]";
+my $log = ST::Log->log($logentry);
