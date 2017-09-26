@@ -10,8 +10,9 @@ use feature 'say';
 package ST::Log;
 use Data::Dumper;
 use Getopt::Std;
-use Image::ExifTool qw(:Public);
 
 sub new {
   return;
 }
+
+1;
