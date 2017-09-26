@@ -2,7 +2,7 @@
 
 Folgende Dinge sollen mit den Scripten abgedeckt werden:
 * Steuerung des Sliders
-* Steuerung der Camera
+* Steuerung der Camera (Nikon, Canon über gPhoto, meine Olympus über eigene Scripte)
 * Belichtungsmessung und Aufnahme Anpassung für bessere Timelapse Source Bilder (Holy Grail Technologie?)
 
 Das Ganze soll nach einmaligem Setup autark laufen und so weit wie möglich vom Stromnetz unabhängig.
