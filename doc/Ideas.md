@@ -81,3 +81,4 @@ for i in range (12970):
 * [RPI Timelapse Controller](http://blog.davidsingleton.org/raspberry-pi-timelapse-controller/)
 * [LRTimelapse Pro Free Timer - GWegner](https://github.com/gwegner/LRTimelapse-Pro-Timer-Free)
 * [Timelapse Deflicker](https://github.com/cyberang3l/timelapse-deflicker)
+* [Steuerung der Olympus Air A01](https://github.com/joemcmanus/a01)
