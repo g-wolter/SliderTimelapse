@@ -1,6 +1,7 @@
 #!/usr/bin/env perl
-# Analyze every taken picture and store the lens, shutter and iso information
-# for later usage.
+# Simple client to access the Olympus Air A01 over Wifi and HTTP Server
+# Most of the code is taken from the https://github.com/joemcmanus/a01
+# Script and taken to perl.
 
 use strict;
 use warnings;
