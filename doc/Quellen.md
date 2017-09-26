@@ -8,3 +8,5 @@ Quellenangaben:
   <br>Sehr gutes Script zum entflickern von Fotoserien für Timelapse. Vor allem das Luminanzmodul funktioniert sehr schnell. Teile daraus habe ich mir "geklaut" für meine Berechnungen.
 
 - Camera Steuerung über gPhoto2 und Perl: https://github.com/plusyan/perl/tree/master/modules/gphoto2
+
+- Steuerung der Olympus Air A01 über Python: https://github.com/joemcmanus/a01
