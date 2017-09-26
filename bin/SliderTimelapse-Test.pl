@@ -46,10 +46,24 @@ foreach my $file (@files) {
     print "Hauptprogramm - ISO: $iso \n";
     print "Hauptprogramm - SHU: $shutter \n";
 
-    push(@lum, $lum);
-    print "Array: ";
-    print @lum;
+    # testen
+    print "Array Werte: ";
+    print scalar @lum;
     print "\n";
+    if ( scalar @lum < 5 ) {
+	    print "Array kleiner 5 Werte!\n";
+	    push(@lum, $lum);
+	    print "Array: ";
+	    print @lum;
+	    print "\n";
+	    print "Array Werte Anzahl: ";
+	    print scalar @lum;
+	    print "\n";
+    } else {
+	    print "Array groesser 5 Werte!\n";
+	    shift(@lum);
+	    push(@lum, $lum);
+    }
 
     my $float = ST::Float->GetFloatingLuminance(\@lum);
 
