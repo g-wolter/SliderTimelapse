@@ -11,8 +11,20 @@ package ST::Log;
 use Data::Dumper;
 use Getopt::Std;
 
+open(LOGFILE, "/opt/SliderTimelapse/log/sl_log")
+  ||warn "Could not open /opt/SliderTimelapse/log/sl_log.\n";
+
 sub new {
   return;
+}
+
+sub log {
+  my $self = shift;
+	my $filename = $_[0];
+
+  open(DATA, ">>/opt/SliderTimelapse/log/sl_log"
+    || die "Could not write to the log file\n";
+
 }
 
 1;
