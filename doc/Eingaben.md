@@ -1,17 +1,21 @@
 # Grundlegende Gedanken zur Eingabe
 
 ## Allgemein
-- Referenzfoto
+- Referenzfoto (-ref)
 
 ## Slider
-- Vorlauf
-- Rücklauf
-- Mitte
-- Geschwindigkeit
+Funktion | Option
+Slider nutzen | -s
+Vorlauf | -sf
+Rücklauf | -sb
+Mitte | -sm
+Geschwindigkeit | -ss
 
 ## Zeitraffer
-- Anzahl der Bilder
-- Holygrail (ISO+Shutterspeed und ISO+Shutterspeed+Blende)
+- Anzahl der Bilder (-tc)
+- Holygrail (-th)
+  - ISO+Shutterspeed (-this)
+  - ISO+Shutterspeed+Blende (-thisa)
 - Sunset
 - Sunrise
 - Sunset and Sunrise
@@ -20,7 +24,7 @@
 - Schwellwerte (sonst defaults)
 
 ## Camera
-- ISO
-- Blende
-- Shutterspeed
-- Whitebalance
+- ISO (-ci)
+- Blende (-ca)
+- Shutterspeed (-cs)
+- Whitebalance (-cw)
