@@ -63,6 +63,8 @@ for i in range (12970):
 
 ## Gphoto und Timelapse
 
+* Timelapse Berechnung für Sunrise/Sunset mittels Astro::Sunrise Module
+
 ## Luminanzbestimmung
 
 * [Luminanzberechnung](https://github.com/tbrumm/SliderTimelapse/blob/master/doc/Luminanz-Calc.md)
@@ -82,3 +84,4 @@ for i in range (12970):
 * [LRTimelapse Pro Free Timer - GWegner](https://github.com/gwegner/LRTimelapse-Pro-Timer-Free)
 * [Timelapse Deflicker](https://github.com/cyberang3l/timelapse-deflicker)
 * [Steuerung der Olympus Air A01](https://github.com/joemcmanus/a01)
+* [Sunrise/set](http://search.cpan.org/~jforget/Astro-Sunrise-0.96/lib/Astro/Sunrise.pm)
