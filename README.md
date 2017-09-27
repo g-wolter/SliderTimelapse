@@ -1,5 +1,5 @@
 # SliderTimelapse
-:de: Steuerung eines Selbstbausliders mittels Raspberry PI und Kontrolle der angeschlossenen Camera(s) mittels gPhoto2 aus Perl heraus. Die so genannte "Holy Grail" Steuerung der Camera für perfekte Timelapse Videos inkl. und Berechnung der Sliderfahrten anhand der gewünschten Anzahl an Aufnahmen.
+:de: Steuerung eines Selbstbausliders mittels Raspberry PI und Kontrolle der angeschlossenen Camera(s) mittels gPhoto2 aus Perl heraus. Die so genannte "__Holy Grail__" Methode von @gwegner zur Steuerung der Camera für perfekte Timelapse Videos inkl. und Berechnung der Sliderfahrten anhand der gewünschten Anzahl an Aufnahmen.
 
 ## Inhalt:
 - [Teileliste](https://github.com/tbrumm/SliderTimelapse/blob/master/doc/Parts.md)
