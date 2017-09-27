@@ -10,3 +10,7 @@
 - Bild Datenerfassung (ExifTools) :white_check_mark:
 - Bild Luminanz Analyse (ImageMagic) :white_check_mark:
 - Floating Average Berechnung der Aufnahmen Luminanz :white_check_mark:
+
+## Ungetestete Module
+- Steuerung von gPhoto2 aus Perl heraus :soon:
+- Steuerung der Olympus Air A01 :soon:
