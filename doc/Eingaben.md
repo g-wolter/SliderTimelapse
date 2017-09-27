@@ -8,11 +8,11 @@ Referenzfoto | -ref
 ## Slider
 Funktion | Option | Werte
 ---------|--------|------
-Slider nutzen | -s | (yes/no)
-Vorlauf | -s-forward | (yes/no)
-Rücklauf | -s-backward | (yes/no)
-Mitte | -s-middle | (yes/no)
-Geschwindigkeit | -s-speed | (slow/fast)
+Slider nutzen | -s | yes / no
+Vorlauf | -s-forward | yes / no
+Rücklauf | -s-backward | yes / no
+Mitte | -s-middle | yes / no
+Geschwindigkeit | -s-speed | slow / fast
 
 ## Zeitraffer
 Funktion | Option
