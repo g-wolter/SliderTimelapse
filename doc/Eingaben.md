@@ -6,13 +6,13 @@ Funktion | Option
 Referenzfoto | -ref
 
 ## Slider
-Funktion | Option
----------|--------
-Slider nutzen | -s
-Vorlauf | -s-forward
-Rücklauf | -s-backward
-Mitte | -s-middle
-Geschwindigkeit | -s-speed
+Funktion | Option | Werte
+---------|--------|------
+Slider nutzen | -s | (yes/no)
+Vorlauf | -s-forward | (yes/no)
+Rücklauf | -s-backward | (yes/no)
+Mitte | -s-middle | (yes/no)
+Geschwindigkeit | -s-speed | (slow/fast)
 
 ## Zeitraffer
 Funktion | Option
