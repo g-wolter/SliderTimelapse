@@ -9,35 +9,35 @@ Referenzfoto | -ref
 Funktion | Option
 ---------|--------
 Slider nutzen | -s
-Vorlauf | -sf
-Rücklauf | -sb
-Mitte | -sm
-Geschwindigkeit | -ss
+Vorlauf | -s-forward
+Rücklauf | -s-backward
+Mitte | -s-middle
+Geschwindigkeit | -s-speed
 
 ## Zeitraffer
 Funktion | Option
 ---------|--------
-Anzahl der Bilder | -tpc
-Holygrail | -thg
-ISO+Shutterspeed | -thgis
-ISO+Shutterspeed+Blende | -thgisa
-Sunset | -thgss
-Sunrise | -thgsr
-Sunset and Sunrise | -thgsssr
-Stars | -thgstar
-Min ISO | -thgmini
-Max ISO | -thgmaxi
-Min Aperture | -thgmina
-Max Aperture | -thgmaxa
-Min Shutterspeed | -thgmins
-Max Shutterspeed | -thgmaxs
-Korrekturen | -thgadj
-Schwellwerte | -thgthreshhold
+Anzahl der Bilder | -t-piccount
+Holygrail | -t-hg
+ISO+Shutterspeed | -t-hg-is
+ISO+Shutterspeed+Blende | -t-hg-isa
+Sunset | -t-hg-ss
+Sunrise | -t-hg-sr
+Sunset and Sunrise | -t-hg-sssr
+Stars | -t-hg-star
+Min ISO | -t-hg-miniso
+Max ISO | -t-hg-maxiso
+Min Aperture | -t-hg-minaperture
+Max Aperture | -t-hg-maxaperture
+Min Shutterspeed | -t-hg-minshutter
+Max Shutterspeed | -t-hg-maxshutter
+Korrekturen | -t-hg-adjustment
+Schwellwerte | -t-hg-threshold
 
 ## Camera
 Funktion | Option
 ---------|-------
-ISO | -ci
-Blende | -ca
-Shutterspeed | -cs
-Whitebalance | -cw
+ISO | -c-iso
+Blende | -c-aperture
+Shutterspeed | -c-shutter
+Whitebalance | -c-whitebalance
