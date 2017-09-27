@@ -26,12 +26,12 @@ Funktion | Option | Werte | Erklärung
 Holygrail | -hg | yes / no | Holy Grail Funktion nutzen?
 Holygrail Method | -hg-method | IS / ISA | IS = ISO + Shutterspeed / ISA = ISO + Shutterspeed + Aperture
 Holygrail Direction | -hg-direction | sunset / sunrise / stars / startrails | Sonnenuntergang, Sonnenaufgang etc.
-Min ISO | -hg-miniso | 100....6400 | Für sunrise direction
-Max ISO | -hg-maxiso | 100....6400 | Für sunset und stars(trails) direction
-Min Aperture | -hg-minaperture | 2,8....22 | Für sunrise direction
-Max Aperture | -hg-maxaperture | 2,8....22 | Für sunset und stars(trails) direction
-Min Shutterspeed | -hg-minshutter | 1/8000....30 | Für sunrise direction
-Max Shutterspeed | -hg-maxshutter | 1/8000....30 | Für sunset und stars(trails) direction
+Min ISO | -hg-miniso | 100 | Für sunrise direction
+Max ISO | -hg-maxiso | 6400 | Für sunset und stars(trails) direction
+Min Aperture | -hg-minaperture | 22 | Für sunrise direction
+Max Aperture | -hg-maxaperture | 2,8 | Für sunset und stars(trails) direction
+Min Shutterspeed | -hg-minshutter | 1/8000 | Für sunrise direction
+Max Shutterspeed | -hg-maxshutter | 30 | Für sunset und stars(trails) direction
 Schwellwerte | -hg-threshold | xxx% | Anpassung der internen Schwellwerte
 
 ## Camera
