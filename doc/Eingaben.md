@@ -17,7 +17,7 @@ Geschwindigkeit | -s-speed | slow / fast
 ## Zeitraffer
 Funktion | Option | Werte
 ---------|--------|------
-Zeitraffer | -t | yes/no
+Zeitraffer | -t | yes / no
 Anzahl der Bilder | -t-count | 1....x
 
 ## Holy Grail
