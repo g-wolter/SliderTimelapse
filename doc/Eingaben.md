@@ -17,16 +17,22 @@ Geschwindigkeit | -ss
 ## Zeitraffer
 Funktion | Option
 ---------|--------
-Anzahl der Bilder | -tc
-Holygrail | -th
-ISO+Shutterspeed | -this
-ISO+Shutterspeed+Blende | -thisa
-Sunset | -thss
-Sunrise | -thsr
-Sunset and Sunrise | -thsssr
-Stars | -thstar
-Korrekturen | -thadj
-Schwellwerte | -ththrehld
+Anzahl der Bilder | -tpc
+Holygrail | -thg
+ISO+Shutterspeed | -thgis
+ISO+Shutterspeed+Blende | -thgisa
+Sunset | -thgss
+Sunrise | -thgsr
+Sunset and Sunrise | -thgsssr
+Stars | -thgstar
+Min ISO | -thgmini
+Max ISO | -thgmaxi
+Min Aperture | -thgmina
+Max Aperture | -thgmaxa
+Min Shutterspeed | -thgmins
+Max Shutterspeed | -thgmaxs
+Korrekturen | -thgadj
+Schwellwerte | -thgthreshhold
 
 ## Camera
 Funktion | Option
