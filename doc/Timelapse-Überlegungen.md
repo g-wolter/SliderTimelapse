@@ -1,6 +1,10 @@
 # Gedanken zur Timelapse Steuerung
 
 ## Sunrise
+* Aus der Nacht kommende Lange Belichtungen
+* Hohe ISO Werte am Anfang
+* ISO Step by Step verringern
+* Belichtungszeiten Step by Step verringen
 
 ## Daytime
 
