@@ -1,5 +1,8 @@
 # Grundlegende Gedanken zur Eingabe
 
+## Allgemein
+- Referenzfoto
+
 ## Slider
 - Vorlauf
 - Rücklauf
