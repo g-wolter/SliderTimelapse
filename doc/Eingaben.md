@@ -25,7 +25,9 @@ Geschwindigkeit | -ss
 - Schwellwerte (sonst defaults)
 
 ## Camera
-- ISO (-ci)
-- Blende (-ca)
-- Shutterspeed (-cs)
-- Whitebalance (-cw)
+Funktion | Option
+---------|-------
+ISO | -ci
+Blende | -ca
+Shutterspeed | -cs
+Whitebalance | -cw
