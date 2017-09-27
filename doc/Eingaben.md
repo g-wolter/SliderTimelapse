@@ -1,7 +1,9 @@
 # Grundlegende Gedanken zur Eingabe
 
 ## Allgemein
-- Referenzfoto (-ref)
+Funktion | Option
+---------|--------
+Referenzfoto | -ref
 
 ## Slider
 Funktion | Option
@@ -13,16 +15,18 @@ Mitte | -sm
 Geschwindigkeit | -ss
 
 ## Zeitraffer
-- Anzahl der Bilder (-tc)
-- Holygrail (-th)
-  - ISO+Shutterspeed (-this)
-  - ISO+Shutterspeed+Blende (-thisa)
-- Sunset
-- Sunrise
-- Sunset and Sunrise
-- Stars
-- Korrekturen (sonst defaults)
-- Schwellwerte (sonst defaults)
+Funktion | Option
+---------|--------
+Anzahl der Bilder | -tc
+Holygrail | -th
+ISO+Shutterspeed | -this
+ISO+Shutterspeed+Blende | -thisa
+Sunset | -thss
+Sunrise | -thsr
+Sunset and Sunrise | -thsssr
+Stars | -thstar
+Korrekturen | -thadj
+Schwellwerte | -ththrehld
 
 ## Camera
 Funktion | Option
