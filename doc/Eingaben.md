@@ -5,6 +5,7 @@
 
 ## Slider
 Funktion | Option
+---------|--------
 Slider nutzen | -s
 Vorlauf | -sf
 Rücklauf | -sb
