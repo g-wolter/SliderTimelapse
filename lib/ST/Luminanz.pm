@@ -16,7 +16,7 @@ $im_version = version->parse($_im_version =~ s/-/./r);
 my $statFieldsPerColChannel = $im_version >= $imStatsChangedVer ? 8 : 7;
 
 use constant {
-	RedPixelChannel => 0,
+  RedPixelChannel => 0,
   GreenPixelChannel => 1,
   BluePixelChannel => 2,
 };
