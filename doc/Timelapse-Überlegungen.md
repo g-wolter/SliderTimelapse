@@ -12,4 +12,4 @@
 * Hohe ISO Werte (Schwarzbild?)
 * Lange Belichtungszeiten (500er Rule oder [NPF Rule](https://petapixel.com/2017/04/07/npf-rule-formula-sharp-star-photos-every-time/))
 
-![My Cams with NPF](NPF.png)
+![My Cams with NPF](pic/NPF.png)
