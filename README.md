@@ -1,5 +1,5 @@
 # SliderTimelapse
-:de: Erstmal nur ein Repository um meine Code Schnipsel für die Slider und Camera Steuerung zu sammeln.
+:de: Steuerung eines Selbstbausliders mittels Raspberry PI und Kontrolle der angeschlossenen Camera(s) mittels gPhoto2 aus Perl heraus. Die so genannte "Holy Grail" Steuerung der Camera für perfekte Timelapse Videos inkl. und Berechnung der Sliderfahrten anhand der gewünschten Anzahl an Aufnahmen.
 
 ## Inhalt:
 - [Teileliste](https://github.com/tbrumm/SliderTimelapse/blob/master/doc/Parts.md)
