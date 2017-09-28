@@ -9,7 +9,7 @@ Das Ganze soll nach einmaligem Setup autark laufen und so weit wie möglich vom 
 Die Steuerung soll im ersten Step über die CLI erfolgen, ein Webinterface könnte ggf. nachträglich zugefügt
 werden.
 
-![SliderTimeLapse Process](SliderTimeLapseControl.png)
+![SliderTimeLapse Process](pic/SliderTimeLapseControl.png)
 
 ## 120cm Slider und Schrittmotor
 Der Schrittmotor braucht für meinen 120cm Slider genau 12970 Schritte. In der schnellsten Steuerungseinstellung
@@ -34,7 +34,7 @@ Mit dieser FOR Schleife werden die einzelnen Spulen des Schrittmotors angesproch
 
 ```python
 # Volle Umdrehung sind 512 Schritte  
-for i in range (12970):    
+for i in range (12970):
     Step1()
     Step2()
     Step3()
@@ -48,9 +48,9 @@ for i in range (12970):
 #### Rückwärts
 
 ```python
-# Volle Umdrehung sind 512 Schritte 
-for i in range (12970):    
-    Step8() 
+# Volle Umdrehung sind 512 Schritte
+for i in range (12970):
+    Step8()
     Step7()
     Step6()
     Step5()
