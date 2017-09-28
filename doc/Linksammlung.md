@@ -6,5 +6,5 @@
 * [NPF Rule for Sharp Stars](http://galleries.aaronpriestphoto.com/Articles/NPF-Rule-for-Sharp-Stars/?_sm_au_=iNH3nq72N7Qn088F)
 
 ## Allgemeines
-
+* [Digicam DB](https://www.digicamdb.com)
 * [ISO Invarianz](https://photographylife.com/iso-invariance-explained)
