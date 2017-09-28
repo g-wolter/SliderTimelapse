@@ -8,3 +8,4 @@
 ## Allgemeines
 * [Digicam DB](https://www.digicamdb.com)
 * [ISO Invarianz](https://photographylife.com/iso-invariance-explained)
+* [Photopills](http://www.photopills.com/)
