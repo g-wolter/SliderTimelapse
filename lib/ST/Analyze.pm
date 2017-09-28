@@ -15,13 +15,14 @@ sub new {
 }
 
 sub GetImageInfo {
-	my $self = shift;
-	my $filename = $_[0];
-	my $exifTool = new Image::ExifTool;
-	my $info = $exifTool->ImageInfo($filename);
-	my $ISO = $exifTool->GetValue('ISO');
-	my $ShutterSpeed = $exifTool->GetValue('ShutterSpeed');
-	return ($ISO, $ShutterSpeed);
+  my $self = shift;
+  my $filename = $_[0];
+  my $exifTool = new Image::ExifTool;
+  my $info = $exifTool->ImageInfo($filename);
+  my $ISO = $exifTool->GetValue('ISO');
+  my $Aperture = $exifTool->GetValue('Aperture');
+  my $ShutterSpeed = $exifTool->GetValue('ShutterSpeed');
+  return ($ISO, $ShutterSpeed, $Aperture);
 }
 
 sub test {

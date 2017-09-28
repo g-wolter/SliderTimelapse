@@ -41,33 +41,23 @@ foreach my $file (@files) {
     my $lum = ST::Luminanz->GetLuminanceInfo($file);
     print "Luminanz: $lum\n";
 
-    my ($iso, $shutter) = ST::Analyze->GetImageInfo($file);
+		my ($iso, $shutter, $aperture) = ST::Analyze->GetImageInfo($file);
     print "File: $file\n";
-    print "Hauptprogramm - ISO: $iso \n";
-    print "Hauptprogramm - SHU: $shutter \n";
+    print "ISO: $iso \n";
+    print "APE: $aperture \n";
+    print "SHU: $shutter \n";
 
-    # testen
-    print "Array Werte: ";
-    print scalar @lum;
-    print "\n";
+
     if ( scalar @lum < 5 ) {
-	    print "Array kleiner 5 Werte!\n";
 	    push(@lum, $lum);
-	    print "Array: ";
-	    print @lum;
-	    print "\n";
-	    print "Array Werte Anzahl: ";
-	    print scalar @lum;
-	    print "\n";
     } else {
-	    print "Array groesser 5 Werte!\n";
 	    shift(@lum);
 	    push(@lum, $lum);
     }
 
     my $float = ST::Float->GetFloatingLuminance(\@lum);
 
-    my $logentry = "\[$session\] \[$date\] \[ISO: $iso\] \[SHU: $shutter\] \[LUM: $lum\] \[File: $file\]";
+    my $logentry = "\[$session\] \[$date\] \[File: $file\] \[ISO: $iso\] \[APE: $aperture\] \[SHU: $shutter\] \[LUM: $lum\] \[FLOAT: $float\]";
     $log = ST::Log->log($logentry);
 
 	}

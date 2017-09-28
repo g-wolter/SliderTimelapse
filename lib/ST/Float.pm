@@ -20,8 +20,7 @@ sub GetFloatingLuminance {
     my $sum = 0;
     $sum += $_ for(@lum);
     my $avg = $sum / scalar(@lum);
-    print "Floating Luminance: ";
-    print $avg,"\n";
+    return ( $avg );
   }
 
 }
