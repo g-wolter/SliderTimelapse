@@ -9,3 +9,6 @@
 * [Digicam DB](https://www.digicamdb.com)
 * [ISO Invarianz](https://photographylife.com/iso-invariance-explained)
 * [Photopills](http://www.photopills.com/)
+
+## HolyGrail
+* [Average Pool Berechnung und Logic](http://dslrdashboard.info/phpBB3/viewtopic.php?f=5&t=1519)
