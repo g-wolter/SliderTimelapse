@@ -12,3 +12,6 @@
 
 ## HolyGrail
 * [Average Pool Berechnung und Logic](http://dslrdashboard.info/phpBB3/viewtopic.php?f=5&t=1519)
+
+## DSLRDashboard und DDServer unter Debian Jessi/Raspi
+* [ddserver als Dienst einrichten](http://www.hoeser-medien.de/2017/03/nikon-d7000-remote-control-with-qdslrdashboard-adn-ddserver-on-rapsberry-pi-zero-w/)
